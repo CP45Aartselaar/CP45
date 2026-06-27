@@ -1,0 +1,718 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Luxury Property - Aartselaar</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            color: #2c2c2c;
+            background-color: #fafafa;
+            line-height: 1.6;
+        }
+
+        /* Header & Navigation */
+        header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            padding: 1.5rem 2rem;
+            border-bottom: 1px solid #e8e8e8;
+        }
+
+        .header-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 300;
+            letter-spacing: 2px;
+            color: #1a1a1a;
+        }
+
+        .language-switcher {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .lang-btn {
+            padding: 0.6rem 1rem;
+            border: 1px solid #d0d0d0;
+            background: white;
+            cursor: pointer;
+            font-size: 0.85rem;
+            letter-spacing: 1px;
+            transition: all 0.3s ease;
+            color: #666;
+        }
+
+        .lang-btn.active {
+            background: #1a1a1a;
+            color: white;
+            border-color: #1a1a1a;
+        }
+
+        .lang-btn:hover {
+            border-color: #1a1a1a;
+        }
+
+        /* Hero Section */
+        .hero {
+            margin-top: 80px;
+            height: 100vh;
+            position: relative;
+            overflow: hidden;
+            background: #000;
+        }
+
+        .carousel-container {
+            position: relative;
+            width: 100%;
+            height: 100%;
+        }
+
+        .carousel-slide {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            transition: opacity 0.8s ease-in-out;
+        }
+
+        .carousel-slide.active {
+            opacity: 1;
+        }
+
+        .carousel-slide img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .hero-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);
+            padding: 4rem 2rem 2rem;
+            color: white;
+            z-index: 10;
+        }
+
+        .hero-content {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .hero-title {
+            font-size: 3.5rem;
+            font-weight: 300;
+            letter-spacing: 1px;
+            margin-bottom: 1rem;
+        }
+
+        .hero-subtitle {
+            font-size: 1.3rem;
+            font-weight: 300;
+            letter-spacing: 0.5px;
+            margin-bottom: 2rem;
+        }
+
+        .hero-price {
+            font-size: 1.2rem;
+            letter-spacing: 0.5px;
+        }
+
+        .carousel-dots {
+            position: absolute;
+            bottom: 50px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 0.5rem;
+            z-index: 15;
+        }
+
+        .dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.4);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .dot.active {
+            background: white;
+            width: 30px;
+            border-radius: 6px;
+        }
+
+        /* Content Sections */
+        section {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 4rem 2rem;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            font-weight: 300;
+            margin-bottom: 3rem;
+            letter-spacing: 1px;
+            text-align: center;
+        }
+
+        /* Property Details */
+        .details-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .detail-card {
+            background: white;
+            padding: 2rem;
+            border: 1px solid #e8e8e8;
+            text-align: center;
+        }
+
+        .detail-value {
+            font-size: 2rem;
+            font-weight: 300;
+            color: #1a1a1a;
+            margin-bottom: 0.5rem;
+        }
+
+        .detail-label {
+            font-size: 0.9rem;
+            color: #666;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+        }
+
+        /* Features Section */
+        .features {
+            background: white;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+        }
+
+        .feature {
+            padding: 1.5rem;
+            border-left: 3px solid #1a1a1a;
+            background: #fafafa;
+        }
+
+        .feature-title {
+            font-size: 1.1rem;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+        }
+
+        .feature-text {
+            font-size: 0.9rem;
+            color: #666;
+            line-height: 1.6;
+        }
+
+        /* Visit Section */
+        .visit {
+            background: #1a1a1a;
+            color: white;
+            text-align: center;
+        }
+
+        .visit .section-title {
+            color: white;
+        }
+
+        .visit-dates {
+            font-size: 2rem;
+            margin: 2rem 0;
+            font-weight: 300;
+            letter-spacing: 1px;
+        }
+
+        .visit-description {
+            font-size: 1.1rem;
+            color: #ccc;
+            max-width: 600px;
+            margin: 0 auto 2rem;
+        }
+
+        /* Contact Section */
+        .contact {
+            background: white;
+        }
+
+        .contact-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .contact-info {
+            padding: 2rem;
+            background: #f5f5f5;
+        }
+
+        .contact-person {
+            margin-bottom: 2rem;
+        }
+
+        .contact-name {
+            font-size: 1.3rem;
+            font-weight: 500;
+            margin-bottom: 1rem;
+            letter-spacing: 0.5px;
+        }
+
+        .contact-detail {
+            margin: 0.5rem 0;
+            font-size: 1rem;
+            color: #555;
+        }
+
+        .contact-detail a {
+            color: #1a1a1a;
+            text-decoration: none;
+            border-bottom: 1px solid #1a1a1a;
+            transition: all 0.3s ease;
+        }
+
+        .contact-detail a:hover {
+            color: #666;
+            border-color: #666;
+        }
+
+        .cta-button {
+            display: inline-block;
+            padding: 1rem 2.5rem;
+            background: #1a1a1a;
+            color: white;
+            border: none;
+            font-size: 1rem;
+            letter-spacing: 1px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-top: 2rem;
+            text-decoration: none;
+        }
+
+        .cta-button:hover {
+            background: #444;
+        }
+
+        /* Footer */
+        footer {
+            background: #1a1a1a;
+            color: white;
+            text-align: center;
+            padding: 2rem;
+            font-size: 0.9rem;
+            letter-spacing: 0.5px;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero-title {
+                font-size: 2rem;
+            }
+
+            .hero-subtitle {
+                font-size: 1rem;
+            }
+
+            .section-title {
+                font-size: 1.8rem;
+            }
+
+            .details-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .contact-content {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .header-content {
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            .language-switcher {
+                justify-content: center;
+            }
+        }
+
+        /* Hidden content */
+        [data-lang]:not([data-lang="nl"]) {
+            display: none;
+        }
+
+        .lang-active {
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="header-content">
+            <div class="logo">PROPERTY</div>
+            <div class="language-switcher">
+                <button class="lang-btn active" data-lang="nl">NL</button>
+                <button class="lang-btn" data-lang="en">EN</button>
+                <button class="lang-btn" data-lang="fr">FR</button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="carousel-container">
+            <div class="carousel-slide active">
+                <div style="width: 100%; height: 100%; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);"></div>
+            </div>
+            <div class="carousel-slide">
+                <div style="width: 100%; height: 100%; background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);"></div>
+            </div>
+            <div class="carousel-slide">
+                <div style="width: 100%; height: 100%; background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);"></div>
+            </div>
+            <div class="carousel-slide">
+                <div style="width: 100%; height: 100%; background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);"></div>
+            </div>
+            <div class="carousel-slide">
+                <div style="width: 100%; height: 100%; background: linear-gradient(135deg, #fa709a 0%, #fee140 100%);"></div>
+            </div>
+
+            <div class="hero-overlay">
+                <div class="hero-content">
+                    <h1 class="hero-title" data-lang="nl">Luxe Woning in Aartselaar</h1>
+                    <h1 class="hero-title lang-hidden" data-lang="en" style="display: none;">Luxury Home in Aartselaar</h1>
+                    <h1 class="hero-title lang-hidden" data-lang="fr" style="display: none;">Maison de Luxe à Aartselaar</h1>
+
+                    <p class="hero-subtitle" data-lang="nl">Moderne architectuur. Uitstekende locatie. Premium afwerking.</p>
+                    <p class="hero-subtitle lang-hidden" data-lang="en" style="display: none;">Modern architecture. Excellent location. Premium finishing.</p>
+                    <p class="hero-subtitle lang-hidden" data-lang="fr" style="display: none;">Architecture moderne. Excellent emplacement. Finitions premium.</p>
+
+                    <div class="hero-price" data-lang="nl">Vanaf € 598.000</div>
+                    <div class="hero-price lang-hidden" data-lang="en" style="display: none;">From € 598,000</div>
+                    <div class="hero-price lang-hidden" data-lang="fr" style="display: none;">À partir de € 598.000</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="carousel-dots">
+            <span class="dot active" onclick="currentSlide(0)"></span>
+            <span class="dot" onclick="currentSlide(1)"></span>
+            <span class="dot" onclick="currentSlide(2)"></span>
+            <span class="dot" onclick="currentSlide(3)"></span>
+            <span class="dot" onclick="currentSlide(4)"></span>
+        </div>
+    </section>
+
+    <!-- Property Details -->
+    <section class="details">
+        <h2 class="section-title" data-lang="nl">De Woning</h2>
+        <h2 class="section-title lang-hidden" data-lang="en" style="display: none;">The Property</h2>
+        <h2 class="section-title lang-hidden" data-lang="fr" style="display: none;">La Propriété</h2>
+
+        <div class="details-grid">
+            <div class="detail-card">
+                <div class="detail-value">220 m²</div>
+                <div class="detail-label" data-lang="nl">Woonoppervlak</div>
+                <div class="detail-label lang-hidden" data-lang="en" style="display: none;">Living Area</div>
+                <div class="detail-label lang-hidden" data-lang="fr" style="display: none;">Surface Habitable</div>
+            </div>
+            <div class="detail-card">
+                <div class="detail-value">276 m²</div>
+                <div class="detail-label" data-lang="nl">Totaal Terrein</div>
+                <div class="detail-label lang-hidden" data-lang="en" style="display: none;">Total Land</div>
+                <div class="detail-label lang-hidden" data-lang="fr" style="display: none;">Terrain Total</div>
+            </div>
+            <div class="detail-card">
+                <div class="detail-value">3</div>
+                <div class="detail-label" data-lang="nl">Slaapkamers</div>
+                <div class="detail-label lang-hidden" data-lang="en" style="display: none;">Bedrooms</div>
+                <div class="detail-label lang-hidden" data-lang="fr" style="display: none;">Chambres</div>
+            </div>
+            <div class="detail-card">
+                <div class="detail-value">2</div>
+                <div class="detail-label" data-lang="nl">Badkamers</div>
+                <div class="detail-label lang-hidden" data-lang="en" style="display: none;">Bathrooms</div>
+                <div class="detail-label lang-hidden" data-lang="fr" style="display: none;">Salles de Bain</div>
+            </div>
+            <div class="detail-card">
+                <div class="detail-value">2019</div>
+                <div class="detail-label" data-lang="nl">Renovatiejaar</div>
+                <div class="detail-label lang-hidden" data-lang="en" style="display: none;">Renovation Year</div>
+                <div class="detail-label lang-hidden" data-lang="fr" style="display: none;">Année Rénovation</div>
+            </div>
+            <div class="detail-card">
+                <div class="detail-value">B</div>
+                <div class="detail-label" data-lang="nl">EPC Classificatie</div>
+                <div class="detail-label lang-hidden" data-lang="en" style="display: none;">EPC Rating</div>
+                <div class="detail-label lang-hidden" data-lang="fr" style="display: none;">Classement PEB</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features -->
+    <section class="features">
+        <h2 class="section-title" data-lang="nl">Waarom Deze Woning</h2>
+        <h2 class="section-title lang-hidden" data-lang="en" style="display: none;">Why This Property</h2>
+        <h2 class="section-title lang-hidden" data-lang="fr" style="display: none;">Pourquoi Cette Propriété</h2>
+
+        <div class="features-grid">
+            <div class="feature">
+                <div class="feature-title" data-lang="nl">Energieklasse B</div>
+                <div class="feature-title lang-hidden" data-lang="en" style="display: none;">Energy Class B</div>
+                <div class="feature-title lang-hidden" data-lang="fr" style="display: none;">Classe Énergétique B</div>
+                <p class="feature-text" data-lang="nl">Uitstekende energieefficiëntie</p>
+                <p class="feature-text lang-hidden" data-lang="en" style="display: none;">Excellent energy efficiency</p>
+                <p class="feature-text lang-hidden" data-lang="fr" style="display: none;">Excellente efficacité énergétique</p>
+            </div>
+            <div class="feature">
+                <div class="feature-title" data-lang="nl">Zonnepanelen</div>
+                <div class="feature-title lang-hidden" data-lang="en" style="display: none;">Solar Panels</div>
+                <div class="feature-title lang-hidden" data-lang="fr" style="display: none;">Panneaux Solaires</div>
+                <p class="feature-text" data-lang="nl">Duurzame energievoorziening</p>
+                <p class="feature-text lang-hidden" data-lang="en" style="display: none;">Sustainable energy supply</p>
+                <p class="feature-text lang-hidden" data-lang="fr" style="display: none;">Approvisionnement énergétique durable</p>
+            </div>
+            <div class="feature">
+                <div class="feature-title" data-lang="nl">Halfopen Indeling</div>
+                <div class="feature-title lang-hidden" data-lang="en" style="display: none;">Open Layout</div>
+                <div class="feature-title lang-hidden" data-lang="fr" style="display: none;">Disposition Ouverte</div>
+                <p class="feature-text" data-lang="nl">Ruime keuken met veel licht</p>
+                <p class="feature-text lang-hidden" data-lang="en" style="display: none;">Spacious kitchen with natural light</p>
+                <p class="feature-text lang-hidden" data-lang="fr" style="display: none;">Cuisine spacieuse avec lumière naturelle</p>
+            </div>
+            <div class="feature">
+                <div class="feature-title" data-lang="nl">Airconditioning</div>
+                <div class="feature-title lang-hidden" data-lang="en" style="display: none;">Air Conditioning</div>
+                <div class="feature-title lang-hidden" data-lang="fr" style="display: none;">Climatisation</div>
+                <p class="feature-text" data-lang="nl">Volledig geïnstalleerd</p>
+                <p class="feature-text lang-hidden" data-lang="en" style="display: none;">Fully installed throughout</p>
+                <p class="feature-text lang-hidden" data-lang="fr" style="display: none;">Entièrement installée</p>
+            </div>
+            <div class="feature">
+                <div class="feature-title" data-lang="nl">Garage & Oprit</div>
+                <div class="feature-title lang-hidden" data-lang="en" style="display: none;">Garage & Driveway</div>
+                <div class="feature-title lang-hidden" data-lang="fr" style="display: none;">Garage & Allée</div>
+                <p class="feature-text" data-lang="nl">Parkeerplaats voor 2 auto's</p>
+                <p class="feature-text lang-hidden" data-lang="en" style="display: none;">Parking for 2 cars</p>
+                <p class="feature-text lang-hidden" data-lang="fr" style="display: none;">Stationnement pour 2 voitures</p>
+            </div>
+            <div class="feature">
+                <div class="feature-title" data-lang="nl">Zonneterras</div>
+                <div class="feature-title lang-hidden" data-lang="en" style="display: none;">Sun Terrace</div>
+                <div class="feature-title lang-hidden" data-lang="fr" style="display: none;">Terrasse Ensoleillée</div>
+                <p class="feature-text" data-lang="nl">Eerste verdieping</p>
+                <p class="feature-text lang-hidden" data-lang="en" style="display: none;">First floor access</p>
+                <p class="feature-text lang-hidden" data-lang="fr" style="display: none;">Accès premier étage</p>
+            </div>
+            <div class="feature">
+                <div class="feature-title" data-lang="nl">Mooie Tuin</div>
+                <div class="feature-title lang-hidden" data-lang="en" style="display: none;">Beautiful Garden</div>
+                <div class="feature-title lang-hidden" data-lang="fr" style="display: none;">Beau Jardin</div>
+                <p class="feature-text" data-lang="nl">Goed onderhouden</p>
+                <p class="feature-text lang-hidden" data-lang="en" style="display: none;">Well maintained</p>
+                <p class="feature-text lang-hidden" data-lang="fr" style="display: none;">Bien entretenu</p>
+            </div>
+            <div class="feature">
+                <div class="feature-title" data-lang="nl">Goede Bereikbaarheid</div>
+                <div class="feature-title lang-hidden" data-lang="en" style="display: none;">Excellent Accessibility</div>
+                <div class="feature-title lang-hidden" data-lang="fr" style="display: none;">Excellente Accessibilité</div>
+                <p class="feature-text" data-lang="nl">Snel naar Brussel & Antwerpen</p>
+                <p class="feature-text lang-hidden" data-lang="en" style="display: none;">Quick access to Brussels & Antwerp</p>
+                <p class="feature-text lang-hidden" data-lang="fr" style="display: none;">Accès rapide à Bruxelles & Anvers</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Visit Section -->
+    <section class="visit">
+        <h2 class="section-title" data-lang="nl">Plan Je Bezoek</h2>
+        <h2 class="section-title lang-hidden" data-lang="en" style="display: none;">Plan Your Visit</h2>
+        <h2 class="section-title lang-hidden" data-lang="fr" style="display: none;">Planifiez Votre Visite</h2>
+
+        <p class="visit-description" data-lang="nl">De woning is beschikbaar voor bezichtiging op het aangegeven weekend.</p>
+        <p class="visit-description lang-hidden" data-lang="en" style="display: none;">The property is available for viewings on the indicated weekend.</p>
+        <p class="visit-description lang-hidden" data-lang="fr" style="display: none;">La propriété est disponible pour des visites le week-end indiqué.</p>
+
+        <div class="visit-dates">19 & 20 September 2026</div>
+
+        <p class="visit-description" data-lang="nl">Neem contact op met de agent voor een rondleiding</p>
+        <p class="visit-description lang-hidden" data-lang="en" style="display: none;">Contact the agent for a tour</p>
+        <p class="visit-description lang-hidden" data-lang="fr" style="display: none;">Contactez l'agent pour une visite</p>
+
+        <p style="color: #ccc; margin-top: 2rem; font-size: 0.95rem;">
+            <span data-lang="nl">Beschikbaar vanaf 1 juni 2027</span>
+            <span class="lang-hidden" data-lang="en" style="display: none;">Available from June 1, 2027</span>
+            <span class="lang-hidden" data-lang="fr" style="display: none;">Disponible à partir du 1er juin 2027</span>
+        </p>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="contact">
+        <h2 class="section-title" data-lang="nl">Neem Contact Op</h2>
+        <h2 class="section-title lang-hidden" data-lang="en" style="display: none;">Get In Touch</h2>
+        <h2 class="section-title lang-hidden" data-lang="fr" style="display: none;">Prenez Contact</h2>
+
+        <div class="contact-content">
+            <div class="contact-info">
+                <div class="contact-person">
+                    <div class="contact-name">Tom Mertens</div>
+                    <div class="contact-detail">
+                        <a href="tel:+32472384242">+32 472 384 242</a>
+                    </div>
+                    <div class="contact-detail">
+                        <a href="mailto:CP45_Aartselaar@hotmail.com">CP45_Aartselaar@hotmail.com</a>
+                    </div>
+                </div>
+                <div class="cta-button" style="margin: 0;">
+                    <span data-lang="nl">Bel nu voor een bezichtiging</span>
+                    <span class="lang-hidden" data-lang="en" style="display: none;">Call for a viewing</span>
+                    <span class="lang-hidden" data-lang="fr" style="display: none;">Appelez pour une visite</span>
+                </div>
+            </div>
+
+            <div class="contact-info">
+                <h3 style="margin-bottom: 1rem; font-weight: 500;">
+                    <span data-lang="nl">Contactgegevens</span>
+                    <span class="lang-hidden" data-lang="en" style="display: none;">Contact Information</span>
+                    <span class="lang-hidden" data-lang="fr" style="display: none;">Coordonnées</span>
+                </h3>
+                <p style="color: #666; line-height: 1.8;">
+                    <span data-lang="nl">
+                        Voor vragen over deze woning, bezichtigingen of meer informatie, neem gerust contact op. De agent staat graag voor u klaar.
+                    </span>
+                    <span class="lang-hidden" data-lang="en" style="display: none;">
+                        For questions about this property, viewings, or more information, feel free to contact us. The agent is happy to help.
+                    </span>
+                    <span class="lang-hidden" data-lang="fr" style="display: none;">
+                        Pour des questions sur cette propriété, des visites ou plus d'informations, n'hésitez pas à nous contacter. L'agent sera ravi de vous aider.
+                    </span>
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>© 2026 Luxury Property. <span data-lang="nl">Alle rechten voorbehouden.</span><span class="lang-hidden" data-lang="en" style="display: none;">All rights reserved.</span><span class="lang-hidden" data-lang="fr" style="display: none;">Tous droits réservés.</span></p>
+    </footer>
+
+    <script>
+        let currentSlideIndex = 0;
+        const slides = document.querySelectorAll('.carousel-slide');
+        const dots = document.querySelectorAll('.dot');
+        const totalSlides = slides.length;
+        let autoSlideTimer;
+
+        function showSlide(index) {
+            slides.forEach(slide => slide.classList.remove('active'));
+            dots.forEach(dot => dot.classList.remove('active'));
+
+            slides[index].classList.add('active');
+            dots[index].classList.add('active');
+        }
+
+        function nextSlide() {
+            currentSlideIndex = (currentSlideIndex + 1) % totalSlides;
+            showSlide(currentSlideIndex);
+        }
+
+        function currentSlide(index) {
+            currentSlideIndex = index;
+            showSlide(currentSlideIndex);
+            resetAutoSlide();
+        }
+
+        function resetAutoSlide() {
+            clearInterval(autoSlideTimer);
+            autoSlideTimer = setInterval(nextSlide, 5000);
+        }
+
+        // Language Switching
+        const langButtons = document.querySelectorAll('.lang-btn');
+
+        langButtons.forEach(btn => {
+            btn.addEventListener('click', function() {
+                const lang = this.getAttribute('data-lang');
+                switchLanguage(lang);
+
+                // Update active button
+                langButtons.forEach(b => b.classList.remove('active'));
+                this.classList.add('active');
+
+                // Update HTML lang attribute
+                document.documentElement.lang = lang;
+            });
+        });
+
+        function switchLanguage(lang) {
+            // Hide all language-specific content
+            document.querySelectorAll('[data-lang]').forEach(el => {
+                if (el.getAttribute('data-lang') !== lang) {
+                    el.style.display = 'none';
+                } else {
+                    el.style.display = '';
+                }
+            });
+
+            // Handle lang-hidden class
+            document.querySelectorAll('.lang-hidden').forEach(el => {
+                if (el.getAttribute('data-lang') === lang) {
+                    el.style.display = '';
+                } else {
+                    el.style.display = 'none';
+                }
+            });
+        }
+
+        // Initialize
+        showSlide(0);
+        autoSlideTimer = setInterval(nextSlide, 5000);
+
+        // Keyboard navigation
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'ArrowLeft') {
+                currentSlideIndex = (currentSlideIndex - 1 + totalSlides) % totalSlides;
+                showSlide(currentSlideIndex);
+                resetAutoSlide();
+            } else if (e.key === 'ArrowRight') {
+                nextSlide();
+                resetAutoSlide();
+            }
+        });
+    </script>
+</body>
+</html>

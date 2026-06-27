@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Camiel Paulusstraat 45 — Aartselaar</title>
-<meta name="description" content="Volledig gerenoveerde halfopen woning te Aartselaar. 220 m² bewoonbaar, 3 slaapkamers, 2 badkamers, EPC B. Bieden vanaf € 598.000.">
+<meta name="description" content="Volledig gerenoveerde halfopen woning te Aartselaar. 220 m² bewoonbaar, 3 slaapkamers, 2 badkamers, EPC B. Startprijs € 598.000.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
@@ -94,8 +94,7 @@ header.scrolled .btn:hover{background:var(--ink);color:var(--paper)}
 /* ============ HERO ============ */
 .hero{position:relative;height:100vh;min-height:620px;overflow:hidden;background:#0d0d0c}
 .hero-track{position:absolute;inset:0;display:flex;width:max-content;
-  animation:marquee 70s linear infinite;will-change:transform}
-.hero:hover .hero-track{animation-play-state:paused}
+  animation:marquee 100s linear infinite;will-change:transform}
 .hero-track .slide{height:100vh;min-height:620px;flex:0 0 auto}
 .hero-track .slide img{height:100%;width:auto;object-fit:cover}
 @keyframes marquee{from{transform:translateX(0)}to{transform:translateX(-50%)}}
@@ -150,12 +149,19 @@ header.scrolled .btn:hover{background:var(--ink);color:var(--paper)}
 
 /* ============ FEATURES ============ */
 .features-sec{background:var(--paper-2)}
-.features{display:grid;grid-template-columns:repeat(3,1fr);gap:0;margin-top:3.5rem;
-  border-top:1px solid var(--line);border-left:1px solid var(--line)}
-.feature{border-right:1px solid var(--line);border-bottom:1px solid var(--line);
-  padding:1.7rem 1.7rem;display:flex;align-items:flex-start;gap:1rem;background:var(--paper)}
-.feature .ico{color:var(--brass);font-family:'Cormorant Garamond',serif;font-size:1.4rem;line-height:1.1;flex:0 0 auto}
-.feature .ft{font-size:.96rem;color:var(--ink);letter-spacing:.01em;padding-top:.15rem}
+.feat-groups{display:grid;grid-template-columns:repeat(2,1fr);gap:1.4rem;margin-top:3.5rem}
+.feat-card{background:var(--paper);border:1px solid var(--line);padding:2.1rem 2.1rem 1.9rem;
+  display:flex;flex-direction:column;transition:box-shadow .35s ease,transform .35s ease}
+.feat-card:hover{box-shadow:0 22px 44px -28px rgba(28,27,24,.5);transform:translateY(-3px)}
+.feat-head{display:flex;align-items:center;gap:1rem;padding-bottom:1.25rem;margin-bottom:1.4rem;
+  border-bottom:1px solid var(--line)}
+.feat-badge{flex:0 0 auto;width:48px;height:48px;display:flex;align-items:center;justify-content:center;
+  border:1px solid var(--brass);border-radius:50%;color:var(--brass)}
+.feat-badge svg{width:23px;height:23px}
+.feat-cat{font-family:'Cormorant Garamond',serif;font-size:1.55rem;color:var(--ink);line-height:1.1;font-weight:500}
+.feat-list{list-style:none;display:flex;flex-direction:column;gap:.9rem}
+.feat-list li{display:flex;align-items:flex-start;gap:.7rem;font-size:.95rem;color:var(--ink-soft)}
+.feat-list .chk{flex:0 0 auto;width:16px;height:16px;margin-top:.27rem;color:var(--brass)}
 
 /* ============ VISIT BAND ============ */
 .visit{background:var(--ink);color:#f3ede2;text-align:center}
@@ -208,6 +214,10 @@ header.scrolled .btn:hover{background:var(--ink);color:var(--paper)}
 .card .ci-row a:hover{border-color:var(--brass)}
 .card .btn{width:100%;text-align:center;margin-top:1.8rem;border-color:rgba(255,255,255,.6);color:#fff}
 .card .btn:hover{background:#fff;color:var(--ink);border-color:#fff}
+.price-block{margin-top:2rem}
+.price-amount{font-family:'Cormorant Garamond',serif;font-size:clamp(2.6rem,5.2vw,3.7rem);
+  color:#fff;line-height:1;letter-spacing:.01em}
+.price-sub{margin-top:.55rem;font-size:.7rem;letter-spacing:.28em;text-transform:uppercase;color:#cda86f}
 
 /* ============ FOOTER ============ */
 footer{background:#141310;color:#8b857b;padding:3rem 0;text-align:center}
@@ -241,14 +251,12 @@ footer{background:#141310;color:#8b857b;padding:3rem 0;text-align:center}
   .nav-links{display:none}
   .intro,.loc,.contact{grid-template-columns:1fr;gap:2.5rem}
   .gallery{grid-template-columns:repeat(2,1fr)}
-  .features{grid-template-columns:repeat(2,1fr)}
+  .feat-groups{grid-template-columns:1fr}
   .tile.tall{grid-row:span 1;aspect-ratio:4/3}
-  .hero .price{font-size:1.35rem}
 }
 @media(max-width:560px){
   .facts{grid-template-columns:1fr 1fr}
   .gallery{grid-template-columns:1fr 1fr;gap:8px}
-  .features{grid-template-columns:1fr}
   .brand .sub{display:none}
   .doc{gap:1rem}
   .doc .tag{display:none}
@@ -291,7 +299,6 @@ footer{background:#141310;color:#8b857b;padding:3rem 0;text-align:center}
     <div class="eyebrow" data-i18n="hero.location">Aartselaar · België</div>
     <h1>Camiel Paulusstraat 45</h1>
     <p class="tagline" data-i18n="hero.tagline">Volledig gerenoveerde halfopen woning met veel licht, een ruime keuken en een aangelegde tuin.</p>
-    <div class="price" data-i18n="hero.price">Bieden vanaf € 598.000</div>
     <div class="cta-row">
       <a href="#contact" class="btn btn-solid" data-i18n="hero.cta_visit">Plan een bezoek</a>
       <a href="#gallery" class="btn" data-i18n="hero.cta_gallery">Bekijk de woning</a>
@@ -320,7 +327,7 @@ footer{background:#141310;color:#8b857b;padding:3rem 0;text-align:center}
     <h2 class="reveal" style="font-size:clamp(2rem,3.6vw,3rem)" data-i18n="gallery.heading">Een blik binnen</h2>
     <div class="rule reveal"></div>
   </div>
-  <div class="wrap"><div class="gallery reveal" id="gallery"></div></div>
+  <div class="wrap"><div class="gallery reveal" id="galleryGrid"></div></div>
 </section>
 
 <!-- ===== FEATURES ===== -->
@@ -330,14 +337,14 @@ footer{background:#141310;color:#8b857b;padding:3rem 0;text-align:center}
     <h2 class="reveal" style="font-size:clamp(2rem,3.6vw,3rem)" data-i18n="features.heading">Waarom deze woning</h2>
     <div class="rule reveal"></div>
   </div>
-  <div class="wrap"><div class="features reveal" id="features"></div></div>
+  <div class="wrap"><div class="feat-groups reveal" id="featureGroups"></div></div>
 </section>
 
 <!-- ===== VISIT BAND ===== -->
 <section class="visit">
   <div class="wrap">
     <div class="eyebrow reveal" data-i18n="visit.eyebrow">Bezoekweekend</div>
-    <h2 class="dates reveal">19 &amp; 20/09 2026</h2>
+    <h2 class="dates reveal" data-i18n="visit.dates">19 &amp; 20 september 2026</h2>
     <p class="reveal" data-i18n="visit.body">Kom de woning ontdekken tijdens ons bezoekweekend. Maak vooraf een afspraak met Tom Mertens.</p>
     <div class="avail reveal" data-i18n="visit.avail">Beschikbaar vanaf 1 juni 2027</div>
     <div class="reveal"><a href="#contact" class="btn" data-i18n="visit.cta">Maak een afspraak</a></div>
@@ -378,7 +385,10 @@ footer{background:#141310;color:#8b857b;padding:3rem 0;text-align:center}
       <h2 data-i18n="contact.heading">Plan uw bezoek</h2>
       <div class="rule"></div>
       <p data-i18n="contact.body">Interesse in deze woning of een rondleiding? Neem gerust contact op — u krijgt snel een antwoord.</p>
-      <div class="price" style="font-family:'Cormorant Garamond',serif;font-size:1.6rem;color:#fff;margin-top:1.8rem" data-i18n="contact.price">Bieden vanaf € 598.000</div>
+      <div class="price-block">
+        <div class="price-amount" data-i18n="contact.price">€ 598 000</div>
+        <div class="price-sub" data-i18n="contact.pricelabel">Startprijs</div>
+      </div>
     </div>
     <div class="card reveal">
       <div class="agent">Tom Mertens</div>
@@ -402,7 +412,7 @@ footer{background:#141310;color:#8b857b;padding:3rem 0;text-align:center}
 <footer>
   <div class="wrap foot">
     <div class="fmark">Camiel Paulusstraat 45 · Aartselaar</div>
-    <div class="fprice" data-i18n="footer.price">Bieden vanaf € 598.000 · Beschikbaar 1 juni 2027</div>
+    <div class="fprice" data-i18n="footer.price">Startprijs € 598.000 · Beschikbaar 1 juni 2027</div>
     <p class="disc" data-i18n="footer.disc">Vrijblijvende informatie, onder voorbehoud van wijzigingen. Deze website heeft geen contractuele waarde. Afmetingen en gegevens zijn indicatief.</p>
   </div>
 </footer>
@@ -432,16 +442,39 @@ const GALLERY = [
   {src:"Images/Immovran-35.jpg", c:{nl:"Tuin",en:"Garden",fr:"Jardin"}},
 ];
 
-const FEATURES = {
-  nl:["Sterk EPC-label (B · 208 kWh/m²)","Zonnepanelen","Ruime open keuken","Garage met oprit","Plaats voor 2 wagens buiten","Zonneterras op de eerste verdieping","Aangelegde tuin","Volledig voorzien van airconditioning","Automatische rolluiken","Inbouw gashaard","Inbouwkasten","Muggenramen","Snelle verbinding E19 & A12 (Brussel · Antwerpen)","Gezinsvriendelijke buurt","Mobiscore 8+","Elektriciteit conform gekeurd","Asbestveilig"],
-  en:["Strong EPC label (B · 208 kWh/m²)","Solar panels","Spacious open kitchen","Garage with driveway","Room for 2 cars outside","Sun terrace on the first floor","Landscaped garden","Fully air-conditioned","Automatic roller shutters","Built-in gas fireplace","Fitted wardrobes","Insect screens","Fast access to E19 & A12 (Brussels · Antwerp)","Family-friendly neighbourhood","Mobiscore 8+","Electrical installation certified","Asbestos-safe"],
-  fr:["Excellent label PEB (B · 208 kWh/m²)","Panneaux solaires","Grande cuisine ouverte","Garage avec allée","Place pour 2 voitures à l'extérieur","Terrasse au premier étage","Jardin aménagé","Entièrement climatisée","Volets roulants automatiques","Foyer au gaz intégré","Armoires encastrées","Moustiquaires","Accès rapide E19 & A12 (Bruxelles · Anvers)","Quartier familial","Mobiscore 8+","Électricité conforme","Sans amiante"]
+const F_ICONS = [
+  '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2 4 14h7l-1 8 9-12h-7z"/></svg>',
+  '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M4 10V8a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v2"/><rect x="3" y="10" width="18" height="7" rx="2"/><path d="M7 17v2M17 17v2"/></svg>',
+  '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="9" r="6"/><path d="M12 15v6"/></svg>',
+  '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-6-5.3-6-10a6 6 0 0 1 12 0c0 4.7-6 10-6 10z"/><circle cx="12" cy="11" r="2.3"/></svg>'
+];
+const CHECK = '<svg class="chk" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>';
+
+const FEATURE_GROUPS = {
+  nl:[
+    {cat:"Energie & techniek", items:["Sterk EPC-label (B · 108 kWh/m²)","Zonnepanelen","Volledig voorzien van airconditioning","Automatische rolluiken","Elektriciteit conform gekeurd"]},
+    {cat:"Interieur & comfort", items:["Ruime open keuken","Inbouw gashaard","Inbouwkasten","Muggenramen"]},
+    {cat:"Buiten & parkeren", items:["Garage met oprit","Plaats voor 2 wagens buiten","Zonneterras op de eerste verdieping","Aangelegde tuin"]},
+    {cat:"Ligging & kwaliteit", items:["Snelle verbinding E19 & A12 (Brussel · Antwerpen)","Gezinsvriendelijke buurt","Mobiscore 8+","Asbestveilig"]}
+  ],
+  en:[
+    {cat:"Energy & systems", items:["Strong EPC label (B · 108 kWh/m²)","Solar panels","Fully air-conditioned","Automatic roller shutters","Electrical installation certified"]},
+    {cat:"Interior & comfort", items:["Spacious open kitchen","Built-in gas fireplace","Fitted wardrobes","Insect screens"]},
+    {cat:"Outdoor & parking", items:["Garage with driveway","Room for 2 cars outside","Sun terrace on the first floor","Landscaped garden"]},
+    {cat:"Location & quality", items:["Fast access to E19 & A12 (Brussels · Antwerp)","Family-friendly neighbourhood","Mobiscore 8+","Asbestos-safe"]}
+  ],
+  fr:[
+    {cat:"Énergie & technique", items:["Excellent label PEB (B · 108 kWh/m²)","Panneaux solaires","Entièrement climatisée","Volets roulants automatiques","Électricité conforme"]},
+    {cat:"Intérieur & confort", items:["Grande cuisine ouverte","Foyer au gaz intégré","Armoires encastrées","Moustiquaires"]},
+    {cat:"Extérieur & parking", items:["Garage avec allée","Place pour 2 voitures à l'extérieur","Terrasse au premier étage","Jardin aménagé"]},
+    {cat:"Emplacement & qualité", items:["Accès rapide E19 & A12 (Bruxelles · Anvers)","Quartier familial","Mobiscore 8+","Sans amiante"]}
+  ]
 };
 
 const FACTS = {
-  nl:[["220 m²","Bewoonbaar"],["276 m²","Perceel"],["3","Slaapkamers"],["2","Badkamers"],["Halfopen","Type woning"],["2019","Renovatie"],["Uitstekend","Staat"],["B · 208","EPC kWh/m²"]],
-  en:[["220 m²","Living area"],["276 m²","Total plot"],["3","Bedrooms"],["2","Bathrooms"],["Semi-detached","Property type"],["2019","Renovated"],["Excellent","Condition"],["B · 208","EPC kWh/m²"]],
-  fr:[["220 m²","Habitable"],["276 m²","Terrain"],["3","Chambres"],["2","Salles de bain"],["Semi-mitoyenne","Type de bien"],["2019","Rénovation"],["Excellent","État"],["B · 208","PEB kWh/m²"]]
+  nl:[["220 m²","Bewoonbaar"],["276 m²","Perceel"],["3","Slaapkamers"],["2","Badkamers"],["Halfopen","Type woning"],["2019","Renovatie"],["Uitstekend","Staat"],["B · 108","EPC kWh/m²"]],
+  en:[["220 m²","Living area"],["276 m²","Total plot"],["3","Bedrooms"],["2","Bathrooms"],["Semi-detached","Property type"],["2019","Renovated"],["Excellent","Condition"],["B · 108","EPC kWh/m²"]],
+  fr:[["220 m²","Habitable"],["276 m²","Terrain"],["3","Chambres"],["2","Salles de bain"],["Semi-mitoyenne","Type de bien"],["2019","Rénovation"],["Excellent","État"],["B · 108","PEB kWh/m²"]]
 };
 
 const DOCS = [
@@ -453,47 +486,47 @@ const DOCS = [
 ];
 
 const LOCPOINTS = {
-  nl:[["8+","Mobiscore — vlot bereikbaar met fiets, auto en openbaar vervoer"],["10 min","Tot de op- en afritten van E19 & A12"],["★","Rustige, gezinsvriendelijke buurt"]],
-  en:[["8+","Mobiscore — easy by bike, car and public transport"],["10 min","To the E19 & A12 motorway access"],["★","Quiet, family-friendly neighbourhood"]],
-  fr:[["8+","Mobiscore — accessible à vélo, en voiture et en transports"],["10 min","Vers les accès E19 & A12"],["★","Quartier calme et familial"]]
+  nl:[["8+","Mobiscore — vlot bereikbaar met fiets, auto en openbaar vervoer"],["★","Rustige, residentiële buurt — vlak bij scholen, winkels en in- en uitvalswegen"]],
+  en:[["8+","Mobiscore — easy by bike, car and public transport"],["★","Quiet, residential neighbourhood — close to schools, shops and motorway access"]],
+  fr:[["8+","Mobiscore — accessible à vélo, en voiture et en transports"],["★","Quartier calme et résidentiel — proche des écoles, commerces et accès routiers"]]
 };
 
 const I18N = {
   nl:{
     "nav.overview":"Overzicht","nav.gallery":"Galerij","nav.features":"Troeven","nav.documents":"Documenten","nav.location":"Ligging","nav.book":"Plan een bezoek",
-    "hero.location":"Aartselaar · België","hero.tagline":"Volledig gerenoveerde halfopen woning met veel licht, een ruime keuken en een aangelegde tuin.","hero.price":"Bieden vanaf € 598.000","hero.cta_visit":"Plan een bezoek","hero.cta_gallery":"Bekijk de woning","hero.scroll":"Scroll",
+    "hero.location":"Aartselaar · België","hero.tagline":"Volledig gerenoveerde halfopen woning met veel licht, een ruime keuken en een aangelegde tuin.","hero.cta_visit":"Plan een bezoek","hero.cta_gallery":"Bekijk de woning","hero.scroll":"Scroll",
     "intro.eyebrow":"De woning","intro.heading":"Klaar om in te wonen, niets meer aan te doen.","intro.body":"Deze halfopen woning werd in 2019 volledig gerenoveerd en is in uitstekende staat. Ze biedt 220 m² woonruimte, drie slaapkamers, twee badkamers en een verzorgde tuin — op een rustige, gezinsvriendelijke locatie met snelle verbinding naar Brussel en Antwerpen.",
     "gallery.eyebrow":"Galerij","gallery.heading":"Een blik binnen",
     "features.eyebrow":"Troeven","features.heading":"Waarom deze woning",
-    "visit.eyebrow":"Bezoekweekend","visit.body":"Kom de woning ontdekken tijdens ons bezoekweekend. Maak vooraf een afspraak met Tom Mertens.","visit.avail":"Beschikbaar vanaf 1 juni 2027","visit.cta":"Maak een afspraak",
+    "visit.dates":"19 & 20 september 2026","visit.eyebrow":"Bezoekweekend","visit.body":"Kom de woning ontdekken tijdens ons bezoekweekend. Maak vooraf een afspraak met Tom Mertens.","visit.avail":"Beschikbaar vanaf 1 juni 2027","visit.cta":"Maak een afspraak",
     "docs.eyebrow":"Documenten","docs.heading":"Praktische documenten",
     "loc.eyebrow":"Ligging","loc.heading":"Aartselaar","loc.body":"Een groene, gezinsvriendelijke buurt met scholen, winkels en openbaar vervoer in de buurt. De op- en afritten naar de E19 en A12 liggen vlakbij, met een snelle verbinding richting Brussel en Antwerpen.",
-    "contact.eyebrow":"Contact","contact.heading":"Plan uw bezoek","contact.body":"Interesse in deze woning of een rondleiding? Neem gerust contact op — u krijgt snel een antwoord.","contact.price":"Bieden vanaf € 598.000","contact.role":"Contactpersoon","contact.phone":"Telefoon","contact.email":"E-mail","contact.call":"Bel nu",
-    "footer.price":"Bieden vanaf € 598.000 · Beschikbaar 1 juni 2027","footer.disc":"Vrijblijvende informatie, onder voorbehoud van wijzigingen. Deze website heeft geen contractuele waarde. Afmetingen en gegevens zijn indicatief."
+    "contact.eyebrow":"Contact","contact.heading":"Plan uw bezoek","contact.body":"Interesse in deze woning of een rondleiding? Neem gerust contact op — u krijgt snel een antwoord.","contact.price":"€ 598 000","contact.pricelabel":"Startprijs","contact.role":"Contactpersoon","contact.phone":"Telefoon","contact.email":"E-mail","contact.call":"Bel nu",
+    "footer.price":"Startprijs € 598.000 · Beschikbaar 1 juni 2027","footer.disc":"Vrijblijvende informatie, onder voorbehoud van wijzigingen. Deze website heeft geen contractuele waarde. Afmetingen en gegevens zijn indicatief."
   },
   en:{
     "nav.overview":"Overview","nav.gallery":"Gallery","nav.features":"Highlights","nav.documents":"Documents","nav.location":"Location","nav.book":"Book a viewing",
-    "hero.location":"Aartselaar · Belgium","hero.tagline":"A fully renovated semi-detached home with plenty of light, a spacious kitchen and a landscaped garden.","hero.price":"Offers from € 598,000","hero.cta_visit":"Book a viewing","hero.cta_gallery":"View the home","hero.scroll":"Scroll",
+    "hero.location":"Aartselaar · Belgium","hero.tagline":"A fully renovated semi-detached home with plenty of light, a spacious kitchen and a landscaped garden.","hero.cta_visit":"Book a viewing","hero.cta_gallery":"View the home","hero.scroll":"Scroll",
     "intro.eyebrow":"The property","intro.heading":"Move-in ready, nothing left to do.","intro.body":"This semi-detached home was fully renovated in 2019 and is in excellent condition. It offers 220 m² of living space, three bedrooms, two bathrooms and a well-kept garden — in a quiet, family-friendly location with fast links to Brussels and Antwerp.",
     "gallery.eyebrow":"Gallery","gallery.heading":"A look inside",
     "features.eyebrow":"Highlights","features.heading":"Why this home",
-    "visit.eyebrow":"Open house weekend","visit.body":"Come and discover the home during our open house weekend. Please book an appointment with Tom Mertens in advance.","visit.avail":"Available from 1 June 2027","visit.cta":"Request an appointment",
+    "visit.dates":"19 & 20 September 2026","visit.eyebrow":"Open house weekend","visit.body":"Come and discover the home during our open house weekend. Please book an appointment with Tom Mertens in advance.","visit.avail":"Available from 1 June 2027","visit.cta":"Request an appointment",
     "docs.eyebrow":"Documents","docs.heading":"Practical documents",
     "loc.eyebrow":"Location","loc.heading":"Aartselaar","loc.body":"A green, family-friendly neighbourhood with schools, shops and public transport nearby. The E19 and A12 motorway access points are close by, with fast links towards Brussels and Antwerp.",
-    "contact.eyebrow":"Contact","contact.heading":"Arrange your visit","contact.body":"Interested in this home or a tour? Feel free to get in touch — you'll get a quick reply.","contact.price":"Offers from € 598,000","contact.role":"Contact","contact.phone":"Phone","contact.email":"E-mail","contact.call":"Call now",
-    "footer.price":"Offers from € 598,000 · Available 1 June 2027","footer.disc":"Information without obligation, subject to change. This website has no contractual value. Dimensions and details are indicative."
+    "contact.eyebrow":"Contact","contact.heading":"Arrange your visit","contact.body":"Interested in this home or a tour? Feel free to get in touch — you'll get a quick reply.","contact.price":"€ 598 000","contact.pricelabel":"Starting price","contact.role":"Contact","contact.phone":"Phone","contact.email":"E-mail","contact.call":"Call now",
+    "footer.price":"Starting price € 598,000 · Available 1 June 2027","footer.disc":"Information without obligation, subject to change. This website has no contractual value. Dimensions and details are indicative."
   },
   fr:{
     "nav.overview":"Aperçu","nav.gallery":"Galerie","nav.features":"Atouts","nav.documents":"Documents","nav.location":"Emplacement","nav.book":"Planifier une visite",
-    "hero.location":"Aartselaar · Belgique","hero.tagline":"Maison semi-mitoyenne entièrement rénovée, lumineuse, avec une grande cuisine et un jardin aménagé.","hero.price":"Offres à partir de € 598.000","hero.cta_visit":"Planifier une visite","hero.cta_gallery":"Voir le bien","hero.scroll":"Scroll",
+    "hero.location":"Aartselaar · Belgique","hero.tagline":"Maison semi-mitoyenne entièrement rénovée, lumineuse, avec une grande cuisine et un jardin aménagé.","hero.cta_visit":"Planifier une visite","hero.cta_gallery":"Voir le bien","hero.scroll":"Scroll",
     "intro.eyebrow":"Le bien","intro.heading":"Prêt à emménager, rien à refaire.","intro.body":"Cette maison semi-mitoyenne a été entièrement rénovée en 2019 et est en excellent état. Elle offre 220 m² habitables, trois chambres, deux salles de bain et un jardin soigné — dans un quartier calme et familial, avec un accès rapide à Bruxelles et Anvers.",
     "gallery.eyebrow":"Galerie","gallery.heading":"Un aperçu de l'intérieur",
     "features.eyebrow":"Atouts","features.heading":"Pourquoi ce bien",
-    "visit.eyebrow":"Week-end portes ouvertes","visit.body":"Venez découvrir la maison lors de notre week-end portes ouvertes. Merci de prendre rendez-vous au préalable avec Tom Mertens.","visit.avail":"Disponible à partir du 1 juin 2027","visit.cta":"Prendre rendez-vous",
+    "visit.dates":"19 & 20 septembre 2026","visit.eyebrow":"Week-end portes ouvertes","visit.body":"Venez découvrir la maison lors de notre week-end portes ouvertes. Merci de prendre rendez-vous au préalable avec Tom Mertens.","visit.avail":"Disponible à partir du 1 juin 2027","visit.cta":"Prendre rendez-vous",
     "docs.eyebrow":"Documents","docs.heading":"Documents pratiques",
     "loc.eyebrow":"Emplacement","loc.heading":"Aartselaar","loc.body":"Un quartier vert et familial, avec écoles, commerces et transports à proximité. Les accès aux autoroutes E19 et A12 sont tout proches, avec une liaison rapide vers Bruxelles et Anvers.",
-    "contact.eyebrow":"Contact","contact.heading":"Organisez votre visite","contact.body":"Intéressé par ce bien ou une visite ? N'hésitez pas à nous contacter — vous recevrez une réponse rapidement.","contact.price":"Offres à partir de € 598.000","contact.role":"Personne de contact","contact.phone":"Téléphone","contact.email":"E-mail","contact.call":"Appeler",
-    "footer.price":"Offres à partir de € 598.000 · Disponible le 1 juin 2027","footer.disc":"Informations sans engagement, sous réserve de modifications. Ce site n'a aucune valeur contractuelle. Les dimensions et données sont indicatives."
+    "contact.eyebrow":"Contact","contact.heading":"Organisez votre visite","contact.body":"Intéressé par ce bien ou une visite ? N'hésitez pas à nous contacter — vous recevrez une réponse rapidement.","contact.price":"€ 598 000","contact.pricelabel":"Prix de départ","contact.role":"Personne de contact","contact.phone":"Téléphone","contact.email":"E-mail","contact.call":"Appeler",
+    "footer.price":"Prix de départ € 598.000 · Disponible le 1 juin 2027","footer.disc":"Informations sans engagement, sous réserve de modifications. Ce site n'a aucune valeur contractuelle. Les dimensions et données sont indicatives."
   }
 };
 
@@ -508,7 +541,7 @@ const $ = s => document.querySelector(s);
 })();
 
 function renderGallery(lang){
-  $("#gallery").innerHTML = GALLERY.map((g,i)=>
+  $("#galleryGrid").innerHTML = GALLERY.map((g,i)=>
     `<div class="tile${g.tall?' tall':''}" data-idx="${i}">
        <img src="${g.src}" alt="${g.c[lang]}" loading="lazy">
        <div class="cap">${g.c[lang]}</div>
@@ -516,8 +549,11 @@ function renderGallery(lang){
   document.querySelectorAll('.tile').forEach(t=>t.addEventListener('click',()=>openLB(+t.dataset.idx)));
 }
 function renderFeatures(lang){
-  $("#features").innerHTML = FEATURES[lang].map(f=>
-    `<div class="feature"><span class="ico">—</span><span class="ft">${f}</span></div>`).join("");
+  $("#featureGroups").innerHTML = FEATURE_GROUPS[lang].map((g,i)=>
+    `<div class="feat-card">
+       <div class="feat-head"><span class="feat-badge">${F_ICONS[i]}</span><h3 class="feat-cat">${g.cat}</h3></div>
+       <ul class="feat-list">${g.items.map(it=>`<li>${CHECK}<span>${it}</span></li>`).join("")}</ul>
+     </div>`).join("");
 }
 function renderFacts(lang){
   $("#facts").innerHTML = FACTS[lang].map(f=>

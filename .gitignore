@@ -1,6 +1,9 @@
 # Claude Code local tooling
 .claude/
 
+# Full-resolution source images (kept locally, not deployed)
+Images/_originals/
+
 # OS cruft
 Thumbs.db
 Desktop.ini

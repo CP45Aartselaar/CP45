@@ -134,18 +134,25 @@ header.scrolled .btn:hover{background:var(--ink);color:var(--paper)}
 .fact .v{font-family:'Cormorant Garamond',serif;font-size:2rem;color:var(--ink);line-height:1}
 .fact .l{margin-top:.55rem;font-size:.68rem;letter-spacing:.18em;text-transform:uppercase;color:var(--ink-soft)}
 
-/* ============ GALLERY ============ */
+/* ============ GALLERY (full-bleed stacked) ============ */
 .gallery-sec{background:var(--white)}
-.gallery{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:3.5rem}
-.tile{position:relative;overflow:hidden;cursor:pointer;background:#ddd;aspect-ratio:4/3}
-.tile.tall{grid-row:span 2;aspect-ratio:auto}
-.tile img{width:100%;height:100%;object-fit:cover;transition:transform .9s cubic-bezier(.2,.8,.2,1)}
-.tile:hover img{transform:scale(1.06)}
-.tile .cap{position:absolute;left:0;right:0;bottom:0;padding:1.1rem 1.2rem;
-  color:#fff;font-size:.72rem;letter-spacing:.16em;text-transform:uppercase;
-  background:linear-gradient(transparent,rgba(0,0,0,.6));
-  opacity:0;transform:translateY(8px);transition:.4s ease}
-.tile:hover .cap{opacity:1;transform:translateY(0)}
+.gallery{margin-top:3.5rem;display:flex;flex-direction:column}
+.shot{position:relative;width:100%;height:84vh;min-height:460px;overflow:hidden;
+  cursor:pointer;background:#161514}
+/* oversized inner frame: JS drives translateY (parallax) + scale (scroll-zoom) via --py/--sz */
+.shot-frame{position:absolute;inset:-14%;
+  transform:translateY(var(--py,0)) scale(var(--sz,1.04));will-change:transform}
+.shot-frame img{width:100%;height:100%;object-fit:cover;
+  transform:scale(1);transition:transform .8s cubic-bezier(.2,.8,.2,1);will-change:transform}
+.shot:hover .shot-frame img{transform:scale(1.06)}
+.shot::after{content:"";position:absolute;inset:0;z-index:1;pointer-events:none;
+  background:linear-gradient(180deg,rgba(0,0,0,.16) 0%,transparent 24%,transparent 60%,rgba(0,0,0,.55) 100%)}
+.shot .cap{position:absolute;left:0;bottom:0;z-index:2;
+  padding:2rem clamp(1.5rem,4vw,3.2rem);
+  color:#fff;font-size:.78rem;letter-spacing:.22em;text-transform:uppercase;font-weight:400;
+  text-shadow:0 1px 20px rgba(0,0,0,.55);
+  opacity:0;transform:translateY(14px);transition:opacity .7s ease .05s,transform .7s ease .05s}
+.shot.in .cap{opacity:1;transform:translateY(0)}
 
 /* ============ FEATURES ============ */
 .features-sec{background:var(--paper-2)}
@@ -250,13 +257,13 @@ footer{background:#141310;color:#8b857b;padding:3rem 0;text-align:center}
   .nav{padding:0 1.5rem}
   .nav-links{display:none}
   .intro,.loc,.contact{grid-template-columns:1fr;gap:2.5rem}
-  .gallery{grid-template-columns:repeat(2,1fr)}
   .feat-groups{grid-template-columns:1fr}
-  .tile.tall{grid-row:span 1;aspect-ratio:4/3}
+  .shot{height:62vh;min-height:360px}
+  .shot .cap{padding:1.4rem 1.5rem;font-size:.72rem}
 }
 @media(max-width:560px){
   .facts{grid-template-columns:1fr 1fr}
-  .gallery{grid-template-columns:1fr 1fr;gap:8px}
+  .shot{height:52vh;min-height:300px}
   .brand .sub{display:none}
   .doc{gap:1rem}
   .doc .tag{display:none}
@@ -327,7 +334,7 @@ footer{background:#141310;color:#8b857b;padding:3rem 0;text-align:center}
     <h2 class="reveal" style="font-size:clamp(2rem,3.6vw,3rem)" data-i18n="gallery.heading">Een blik binnen</h2>
     <div class="rule reveal"></div>
   </div>
-  <div class="wrap"><div class="gallery reveal" id="galleryGrid"></div></div>
+  <div class="gallery" id="galleryGrid"></div>
 </section>
 
 <!-- ===== FEATURES ===== -->
@@ -373,7 +380,7 @@ footer{background:#141310;color:#8b857b;padding:3rem 0;text-align:center}
       <p data-i18n="loc.body">Een groene, gezinsvriendelijke buurt met scholen, winkels en het openbaar vervoer in de buurt. De op- en afritten naar de E19 en A12 liggen vlakbij, met een snelle verbinding richting Brussel en Antwerpen.</p>
       <div class="loc-points" id="locPoints"></div>
     </div>
-    <div class="loc-img reveal"><img src="Images/Immovran-2.jpg" alt="Achtergevel en tuin"></div>
+    <div class="loc-img reveal"><img src="Images/Immovran-2.webp" alt="Achtergevel en tuin" loading="lazy" decoding="async"></div>
   </div>
 </section>
 
@@ -428,18 +435,18 @@ footer{background:#141310;color:#8b857b;padding:3rem 0;text-align:center}
 <script>
 /* ====================== DATA ====================== */
 const GALLERY = [
-  {src:"Images/Immovran-2.jpg",  c:{nl:"Achtergevel & tuin",en:"Rear facade & garden",fr:"Façade arrière & jardin"}, tall:true},
-  {src:"Images/Immovran-25.jpg", c:{nl:"Keuken & lichtstraat",en:"Kitchen & atrium",fr:"Cuisine & verrière"}},
-  {src:"Images/Immovran-13.jpg", c:{nl:"Open keuken",en:"Open kitchen",fr:"Cuisine ouverte"}},
-  {src:"Images/Immovran-20.jpg", c:{nl:"Eetkamer",en:"Dining room",fr:"Salle à manger"}},
-  {src:"Images/Immovran-23.jpg", c:{nl:"Inbouw gashaard",en:"Built-in gas fire",fr:"Foyer au gaz"}, tall:true},
-  {src:"Images/Immovran-18.jpg", c:{nl:"Leefruimte",en:"Living room",fr:"Séjour"}},
-  {src:"Images/Immovran-12.jpg", c:{nl:"Keuken in detail",en:"Kitchen detail",fr:"Détail cuisine"}},
-  {src:"Images/Immovran-24.jpg", c:{nl:"Open leefruimte",en:"Open living",fr:"Espace de vie"}},
-  {src:"Images/Immovran-36.jpg", c:{nl:"Zonneterras",en:"Sun terrace",fr:"Terrasse"}},
-  {src:"Images/Immovran-43.jpg", c:{nl:"Badkamer",en:"Bathroom",fr:"Salle de bain"}},
-  {src:"Images/Immovran-49.jpg", c:{nl:"Slaapkamer met inbouwkasten",en:"Bedroom with fitted wardrobes",fr:"Chambre avec dressing"}},
-  {src:"Images/Immovran-35.jpg", c:{nl:"Tuin",en:"Garden",fr:"Jardin"}},
+  {src:"Images/Immovran-2.webp",  c:{nl:"Achtergevel & tuin",en:"Rear facade & garden",fr:"Façade arrière & jardin"}, tall:true},
+  {src:"Images/Immovran-25.webp", c:{nl:"Keuken & lichtstraat",en:"Kitchen & atrium",fr:"Cuisine & verrière"}},
+  {src:"Images/Immovran-13.webp", c:{nl:"Open keuken",en:"Open kitchen",fr:"Cuisine ouverte"}},
+  {src:"Images/Immovran-20.webp", c:{nl:"Eetkamer",en:"Dining room",fr:"Salle à manger"}},
+  {src:"Images/Immovran-23.webp", c:{nl:"Inbouw gashaard",en:"Built-in gas fire",fr:"Foyer au gaz"}, tall:true},
+  {src:"Images/Immovran-18.webp", c:{nl:"Leefruimte",en:"Living room",fr:"Séjour"}},
+  {src:"Images/Immovran-12.webp", c:{nl:"Keuken in detail",en:"Kitchen detail",fr:"Détail cuisine"}},
+  {src:"Images/Immovran-24.webp", c:{nl:"Open leefruimte",en:"Open living",fr:"Espace de vie"}},
+  {src:"Images/Immovran-36.webp", c:{nl:"Zonneterras",en:"Sun terrace",fr:"Terrasse"}},
+  {src:"Images/Immovran-43.webp", c:{nl:"Badkamer",en:"Bathroom",fr:"Salle de bain"}},
+  {src:"Images/Immovran-49.webp", c:{nl:"Slaapkamer met inbouwkasten",en:"Bedroom with fitted wardrobes",fr:"Chambre avec dressing"}},
+  {src:"Images/Immovran-35.webp", c:{nl:"Tuin",en:"Garden",fr:"Jardin"}},
 ];
 
 const F_ICONS = [
@@ -536,17 +543,21 @@ const $ = s => document.querySelector(s);
 // Hero marquee — duplicate the set for a seamless loop
 (function(){
   const heroImgs = ["Immovran-2","Immovran-25","Immovran-13","Immovran-20","Immovran-18","Immovran-23","Immovran-36","Immovran-35"];
-  const set = heroImgs.map(n=>`<div class="slide"><img src="Images/${n}.jpg" alt=""></div>`).join("");
+  const set = heroImgs.map(n=>`<div class="slide"><img src="Images/${n}.webp" alt=""></div>`).join("");
   $("#heroTrack").innerHTML = set + set;
 })();
 
 function renderGallery(lang){
   $("#galleryGrid").innerHTML = GALLERY.map((g,i)=>
-    `<div class="tile${g.tall?' tall':''}" data-idx="${i}">
-       <img src="${g.src}" alt="${g.c[lang]}" loading="lazy">
-       <div class="cap">${g.c[lang]}</div>
-     </div>`).join("");
-  document.querySelectorAll('.tile').forEach(t=>t.addEventListener('click',()=>openLB(+t.dataset.idx)));
+    `<figure class="shot reveal" data-idx="${i}">
+       <div class="shot-frame"><img src="${g.src}" alt="${g.c[lang]}" loading="lazy" decoding="async"></div>
+       <figcaption class="cap">${g.c[lang]}</figcaption>
+     </figure>`).join("");
+  document.querySelectorAll('.shot').forEach(s=>{
+    s.addEventListener('click',()=>openLB(+s.dataset.idx));
+    io.observe(s);                 // fade the section in + reveal caption
+  });
+  if(window.bindParallax) window.bindParallax();
 }
 function renderFeatures(lang){
   $("#featureGroups").innerHTML = FEATURE_GROUPS[lang].map((g,i)=>
@@ -584,20 +595,42 @@ function setLang(lang){
 document.querySelectorAll('#lang button').forEach(b=>
   b.addEventListener('click',()=>setLang(b.dataset.lang)));
 
-let startLang = 'nl';
-try{ const s = localStorage.getItem('cp45_lang'); if(s) startLang = s; }catch(e){}
-setLang(startLang);
-
-/* ====================== NAV SCROLL STATE ====================== */
-const hdr = $("#hdr");
-const onScroll = ()=>hdr.classList.toggle('scrolled', window.scrollY > window.innerHeight*0.7 - 74);
-onScroll(); window.addEventListener('scroll',onScroll,{passive:true});
-
 /* ====================== REVEAL ON SCROLL ====================== */
 const io = new IntersectionObserver((entries)=>{
   entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target);} });
 },{threshold:0.12});
 document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+
+/* ============== GALLERY PARALLAX + SCROLL-ZOOM ============== */
+(function(){
+  let shots=[], ticking=false;
+  function update(){
+    const vh=window.innerHeight||document.documentElement.clientHeight;
+    for(const s of shots){
+      const r=s.getBoundingClientRect();
+      if(r.bottom<-60||r.top>vh+60) continue;
+      const p=Math.min(1,Math.max(0,(vh - r.top)/(vh + r.height))); // 0 entering bottom → 1 leaving top
+      const f=s.firstElementChild;
+      f.style.setProperty('--py', ((0.5 - p) * 16).toFixed(2) + '%');                 // ±8% parallax drift
+      f.style.setProperty('--sz', (1.03 + 0.05*(1 - Math.abs(0.5 - p)*2)).toFixed(3)); // 1.03 edges → 1.08 centre
+    }
+    ticking=false;
+  }
+  function onScroll(){ if(!ticking){ ticking=true; requestAnimationFrame(update); } }
+  window.bindParallax=function(){ shots=Array.from(document.querySelectorAll('.shot')); update(); };
+  window.addEventListener('scroll', onScroll, {passive:true});
+  window.addEventListener('resize', onScroll, {passive:true});
+})();
+
+let startLang = 'nl';
+try{ const s = localStorage.getItem('cp45_lang'); if(s) startLang = s; }catch(e){}
+setLang(startLang);
+window.bindParallax();
+
+/* ====================== NAV SCROLL STATE ====================== */
+const hdr = $("#hdr");
+const onScroll = ()=>hdr.classList.toggle('scrolled', window.scrollY > window.innerHeight*0.7 - 74);
+onScroll(); window.addEventListener('scroll',onScroll,{passive:true});
 
 /* ====================== LIGHTBOX ====================== */
 let lbIdx = 0;

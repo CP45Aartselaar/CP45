@@ -1,718 +1,584 @@
 <!DOCTYPE html>
 <html lang="nl">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Luxury Property - Aartselaar</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Camiel Paulusstraat 45 — Aartselaar</title>
+<meta name="description" content="Volledig gerenoveerde halfopen woning te Aartselaar. 220 m² bewoonbaar, 3 slaapkamers, 2 badkamers, EPC B. Bieden vanaf € 598.000.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#1c1b18;
+  --ink-soft:#56514a;
+  --paper:#f6f3ee;
+  --paper-2:#efeae1;
+  --line:#e2dbcf;
+  --brass:#9c7c4d;
+  --white:#fff;
+  --nav-h:74px;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  font-family:'Jost',sans-serif;
+  color:var(--ink);
+  background:var(--paper);
+  line-height:1.7;
+  font-weight:300;
+  -webkit-font-smoothing:antialiased;
+}
+h1,h2,h3{font-family:'Cormorant Garamond',serif;font-weight:400;line-height:1.1}
+a{color:inherit}
+img{display:block}
+.eyebrow{
+  font-size:.72rem;letter-spacing:.32em;text-transform:uppercase;
+  color:var(--brass);font-weight:400;margin-bottom:1.2rem;
+}
+.wrap{max-width:1280px;margin:0 auto;padding:0 2.5rem}
+section{padding:6.5rem 0}
+.rule{width:60px;height:1px;background:var(--brass);margin:1.6rem 0}
+.center .rule{margin-left:auto;margin-right:auto}
+.center{text-align:center}
 
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            color: #2c2c2c;
-            background-color: #fafafa;
-            line-height: 1.6;
-        }
+/* ============ NAV ============ */
+header{
+  position:fixed;top:0;left:0;right:0;z-index:1000;height:var(--nav-h);
+  display:flex;align-items:center;
+  transition:background .4s ease, box-shadow .4s ease, color .4s ease;
+  color:#fff;
+}
+header.scrolled{
+  background:rgba(246,243,238,.94);
+  backdrop-filter:blur(12px);
+  color:var(--ink);
+  box-shadow:0 1px 0 var(--line);
+}
+.nav{max-width:1280px;margin:0 auto;padding:0 2.5rem;width:100%;
+  display:flex;align-items:center;justify-content:space-between;gap:1rem}
+.brand{display:flex;align-items:baseline;gap:.7rem;text-decoration:none;letter-spacing:.04em}
+.brand .mark{font-family:'Cormorant Garamond',serif;font-size:1.5rem;font-weight:500;letter-spacing:.12em}
+.brand .sub{font-size:.62rem;letter-spacing:.34em;text-transform:uppercase;opacity:.8}
+.nav-links{display:flex;gap:2.2rem;list-style:none}
+.nav-links a{
+  text-decoration:none;font-size:.74rem;letter-spacing:.18em;text-transform:uppercase;
+  position:relative;padding:4px 0;opacity:.9;transition:opacity .25s;
+}
+.nav-links a:hover{opacity:1}
+.nav-links a::after{content:"";position:absolute;left:0;bottom:-2px;width:0;height:1px;
+  background:currentColor;transition:width .3s ease}
+.nav-links a:hover::after{width:100%}
+.nav-right{display:flex;align-items:center;gap:1.6rem}
+.lang{display:flex;align-items:center;gap:.5rem;font-size:.72rem;letter-spacing:.14em}
+.lang button{
+  background:none;border:none;color:inherit;cursor:pointer;
+  font-family:inherit;font-size:.72rem;letter-spacing:.14em;
+  opacity:.55;padding:2px 1px;transition:opacity .25s;text-transform:uppercase;
+}
+.lang button:hover{opacity:.85}
+.lang button.active{opacity:1;border-bottom:1px solid var(--brass);padding-bottom:1px}
+.lang span{opacity:.35}
+.btn{
+  display:inline-block;text-decoration:none;cursor:pointer;
+  font-family:inherit;font-size:.74rem;letter-spacing:.18em;text-transform:uppercase;
+  padding:.85rem 1.7rem;border:1px solid currentColor;background:none;color:inherit;
+  transition:background .3s ease,color .3s ease;font-weight:400;
+}
+.btn:hover{background:var(--ink);color:var(--paper);border-color:var(--ink)}
+header.scrolled .btn:hover{background:var(--ink);color:var(--paper)}
+.btn-solid{background:var(--ink);color:var(--paper);border-color:var(--ink)}
+.btn-solid:hover{background:var(--brass);border-color:var(--brass);color:#fff}
+.nav-toggle{display:none}
 
-        /* Header & Navigation */
-        header {
-            position: fixed;
-            top: 0;
-            width: 100%;
-            background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(10px);
-            z-index: 1000;
-            padding: 1.5rem 2rem;
-            border-bottom: 1px solid #e8e8e8;
-        }
+/* ============ HERO ============ */
+.hero{position:relative;height:100vh;min-height:620px;overflow:hidden;background:#0d0d0c}
+.hero-track{position:absolute;inset:0;display:flex;width:max-content;
+  animation:marquee 70s linear infinite;will-change:transform}
+.hero:hover .hero-track{animation-play-state:paused}
+.hero-track .slide{height:100vh;min-height:620px;flex:0 0 auto}
+.hero-track .slide img{height:100%;width:auto;object-fit:cover}
+@keyframes marquee{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+.hero-veil{position:absolute;inset:0;z-index:2;
+  background:
+    linear-gradient(180deg,rgba(10,10,9,.55) 0%,rgba(10,10,9,.15) 28%,rgba(10,10,9,.25) 60%,rgba(10,10,9,.78) 100%),
+    radial-gradient(120% 80% at 50% 45%,transparent 40%,rgba(10,10,9,.45) 100%);
+}
+.hero-content{position:absolute;inset:0;z-index:3;display:flex;flex-direction:column;
+  align-items:center;justify-content:center;text-align:center;color:#fff;padding:0 1.5rem}
+.hero-content .eyebrow{color:#e9d9bf;margin-bottom:1.4rem}
+.hero h1{font-size:clamp(2.7rem,7vw,5.6rem);font-weight:300;letter-spacing:.01em;
+  text-shadow:0 2px 30px rgba(0,0,0,.35)}
+.hero .tagline{max-width:620px;margin:1.7rem auto 0;font-size:1.05rem;font-weight:300;
+  letter-spacing:.02em;color:#f3ede2;text-shadow:0 1px 14px rgba(0,0,0,.4)}
+.hero .price{margin-top:1.8rem;font-family:'Cormorant Garamond',serif;font-size:1.6rem;
+  letter-spacing:.06em;color:#fff}
+.hero .cta-row{margin-top:2.4rem;display:flex;gap:1rem;flex-wrap:wrap;justify-content:center}
+.hero .btn{border-color:rgba(255,255,255,.75);color:#fff}
+.hero .btn:hover{background:#fff;color:var(--ink);border-color:#fff}
+.hero .btn-solid{background:#fff;color:var(--ink);border-color:#fff}
+.hero .btn-solid:hover{background:var(--brass);border-color:var(--brass);color:#fff}
+.scroll-cue{position:absolute;bottom:26px;left:50%;transform:translateX(-50%);z-index:3;
+  color:#fff;font-size:.64rem;letter-spacing:.3em;text-transform:uppercase;opacity:.85;
+  display:flex;flex-direction:column;align-items:center;gap:.6rem}
+.scroll-cue .line{width:1px;height:42px;background:rgba(255,255,255,.7);animation:cue 2.2s ease-in-out infinite}
+@keyframes cue{0%,100%{transform:scaleY(.4);transform-origin:top;opacity:.4}50%{transform:scaleY(1);opacity:1}}
 
-        .header-content {
-            max-width: 1400px;
-            margin: 0 auto;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
+/* ============ INTRO + FACTS ============ */
+.intro{display:grid;grid-template-columns:1fr 1fr;gap:4.5rem;align-items:center}
+.intro h2{font-size:clamp(2rem,3.4vw,2.9rem);color:var(--ink)}
+.intro p{margin-top:1.5rem;color:var(--ink-soft);max-width:46ch}
+.facts{display:grid;grid-template-columns:repeat(2,1fr);gap:0;
+  border-top:1px solid var(--line);border-left:1px solid var(--line)}
+.fact{border-right:1px solid var(--line);border-bottom:1px solid var(--line);
+  padding:1.8rem 1.6rem;background:var(--paper-2)}
+.fact .v{font-family:'Cormorant Garamond',serif;font-size:2rem;color:var(--ink);line-height:1}
+.fact .l{margin-top:.55rem;font-size:.68rem;letter-spacing:.18em;text-transform:uppercase;color:var(--ink-soft)}
 
-        .logo {
-            font-size: 1.8rem;
-            font-weight: 300;
-            letter-spacing: 2px;
-            color: #1a1a1a;
-        }
+/* ============ GALLERY ============ */
+.gallery-sec{background:var(--white)}
+.gallery{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:3.5rem}
+.tile{position:relative;overflow:hidden;cursor:pointer;background:#ddd;aspect-ratio:4/3}
+.tile.tall{grid-row:span 2;aspect-ratio:auto}
+.tile img{width:100%;height:100%;object-fit:cover;transition:transform .9s cubic-bezier(.2,.8,.2,1)}
+.tile:hover img{transform:scale(1.06)}
+.tile .cap{position:absolute;left:0;right:0;bottom:0;padding:1.1rem 1.2rem;
+  color:#fff;font-size:.72rem;letter-spacing:.16em;text-transform:uppercase;
+  background:linear-gradient(transparent,rgba(0,0,0,.6));
+  opacity:0;transform:translateY(8px);transition:.4s ease}
+.tile:hover .cap{opacity:1;transform:translateY(0)}
 
-        .language-switcher {
-            display: flex;
-            gap: 1rem;
-        }
+/* ============ FEATURES ============ */
+.features-sec{background:var(--paper-2)}
+.features{display:grid;grid-template-columns:repeat(3,1fr);gap:0;margin-top:3.5rem;
+  border-top:1px solid var(--line);border-left:1px solid var(--line)}
+.feature{border-right:1px solid var(--line);border-bottom:1px solid var(--line);
+  padding:1.7rem 1.7rem;display:flex;align-items:flex-start;gap:1rem;background:var(--paper)}
+.feature .ico{color:var(--brass);font-family:'Cormorant Garamond',serif;font-size:1.4rem;line-height:1.1;flex:0 0 auto}
+.feature .ft{font-size:.96rem;color:var(--ink);letter-spacing:.01em;padding-top:.15rem}
 
-        .lang-btn {
-            padding: 0.6rem 1rem;
-            border: 1px solid #d0d0d0;
-            background: white;
-            cursor: pointer;
-            font-size: 0.85rem;
-            letter-spacing: 1px;
-            transition: all 0.3s ease;
-            color: #666;
-        }
+/* ============ VISIT BAND ============ */
+.visit{background:var(--ink);color:#f3ede2;text-align:center}
+.visit .eyebrow{color:#cda86f}
+.visit h2{font-size:clamp(2.4rem,5vw,4rem);color:#fff}
+.visit .dates{font-size:clamp(2.4rem,5vw,4rem)}
+.visit p{max-width:48ch;margin:1.4rem auto 0;color:#c8c2b7}
+.visit .avail{margin-top:2.2rem;font-size:.72rem;letter-spacing:.24em;text-transform:uppercase;color:#cda86f}
+.visit .btn{border-color:rgba(255,255,255,.6);color:#fff;margin-top:2.4rem}
+.visit .btn:hover{background:#fff;color:var(--ink);border-color:#fff}
 
-        .lang-btn.active {
-            background: #1a1a1a;
-            color: white;
-            border-color: #1a1a1a;
-        }
+/* ============ DOCUMENTS ============ */
+.docs-sec{background:var(--white)}
+.docs{margin-top:3rem;border-top:1px solid var(--line)}
+.doc{display:flex;align-items:center;gap:1.5rem;padding:1.4rem .5rem;
+  border-bottom:1px solid var(--line);text-decoration:none;color:var(--ink);
+  transition:background .25s,padding .25s}
+.doc:hover{background:var(--paper);padding-left:1.2rem;padding-right:1.2rem}
+.doc .tag{flex:0 0 auto;font-size:.6rem;letter-spacing:.18em;border:1px solid var(--line);
+  padding:.4rem .6rem;color:var(--ink-soft);border-radius:2px}
+.doc .name{flex:1;font-size:1.02rem;letter-spacing:.01em}
+.doc .arrow{flex:0 0 auto;color:var(--brass);font-size:1.1rem;transition:transform .25s}
+.doc:hover .arrow{transform:translateX(5px)}
 
-        .lang-btn:hover {
-            border-color: #1a1a1a;
-        }
+/* ============ LOCATION ============ */
+.loc-sec{background:var(--paper-2)}
+.loc{display:grid;grid-template-columns:1fr 1fr;gap:4.5rem;align-items:center}
+.loc h2{font-size:clamp(2rem,3.4vw,2.9rem)}
+.loc p{margin-top:1.4rem;color:var(--ink-soft);max-width:48ch}
+.loc-points{margin-top:2rem;display:flex;flex-direction:column;gap:0;border-top:1px solid var(--line)}
+.loc-point{display:flex;align-items:baseline;gap:1.2rem;padding:1rem 0;border-bottom:1px solid var(--line)}
+.loc-point .k{flex:0 0 auto;font-family:'Cormorant Garamond',serif;font-size:1.5rem;color:var(--brass);min-width:64px}
+.loc-point .t{color:var(--ink-soft);font-size:.96rem}
+.loc-img img{width:100%;height:100%;object-fit:cover;min-height:360px}
 
-        /* Hero Section */
-        .hero {
-            margin-top: 80px;
-            height: 100vh;
-            position: relative;
-            overflow: hidden;
-            background: #000;
-        }
+/* ============ CONTACT ============ */
+.contact-sec{background:var(--ink);color:#f3ede2}
+.contact{display:grid;grid-template-columns:1fr 1fr;gap:4.5rem;align-items:center}
+.contact .eyebrow{color:#cda86f}
+.contact h2{font-size:clamp(2rem,3.6vw,3rem);color:#fff}
+.contact p{margin-top:1.3rem;color:#c8c2b7;max-width:42ch}
+.card{border:1px solid rgba(255,255,255,.16);padding:2.6rem;background:rgba(255,255,255,.03)}
+.card .agent{font-family:'Cormorant Garamond',serif;font-size:2rem;color:#fff}
+.card .role{font-size:.68rem;letter-spacing:.22em;text-transform:uppercase;color:#cda86f;margin-top:.4rem}
+.card .ci{margin-top:1.8rem;padding-top:1.5rem;border-top:1px solid rgba(255,255,255,.16)}
+.card .ci-row{display:flex;justify-content:space-between;align-items:baseline;gap:1rem;padding:.6rem 0}
+.card .ci-row .lab{font-size:.66rem;letter-spacing:.2em;text-transform:uppercase;color:#9a948a}
+.card .ci-row a{font-size:1.05rem;text-decoration:none;color:#fff;letter-spacing:.02em;
+  border-bottom:1px solid transparent;transition:border-color .25s}
+.card .ci-row a:hover{border-color:var(--brass)}
+.card .btn{width:100%;text-align:center;margin-top:1.8rem;border-color:rgba(255,255,255,.6);color:#fff}
+.card .btn:hover{background:#fff;color:var(--ink);border-color:#fff}
 
-        .carousel-container {
-            position: relative;
-            width: 100%;
-            height: 100%;
-        }
+/* ============ FOOTER ============ */
+footer{background:#141310;color:#8b857b;padding:3rem 0;text-align:center}
+.foot{display:flex;flex-direction:column;align-items:center;gap:1rem}
+.foot .fmark{font-family:'Cormorant Garamond',serif;font-size:1.4rem;letter-spacing:.14em;color:#cdbfa6}
+.foot .fprice{font-size:.78rem;letter-spacing:.22em;text-transform:uppercase;color:#cda86f}
+.foot .disc{max-width:60ch;font-size:.72rem;line-height:1.8;opacity:.65}
 
-        .carousel-slide {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            opacity: 0;
-            transition: opacity 0.8s ease-in-out;
-        }
+/* ============ LIGHTBOX ============ */
+.lb{position:fixed;inset:0;z-index:2000;background:rgba(12,11,10,.95);
+  display:none;align-items:center;justify-content:center;padding:3rem}
+.lb.open{display:flex}
+.lb img{max-width:92vw;max-height:86vh;object-fit:contain;box-shadow:0 20px 60px rgba(0,0,0,.5)}
+.lb-close{position:absolute;top:1.4rem;right:1.8rem;color:#fff;font-size:2rem;cursor:pointer;
+  font-family:'Cormorant Garamond',serif;line-height:1;opacity:.8}
+.lb-close:hover{opacity:1}
+.lb-nav{position:absolute;top:50%;transform:translateY(-50%);color:#fff;font-size:2.4rem;
+  cursor:pointer;opacity:.6;padding:1rem;user-select:none;font-family:'Cormorant Garamond',serif}
+.lb-nav:hover{opacity:1}
+.lb-prev{left:1rem}.lb-next{right:1rem}
 
-        .carousel-slide.active {
-            opacity: 1;
-        }
+/* ============ REVEAL ============ */
+.reveal{opacity:0;transform:translateY(26px);transition:opacity 1s ease,transform 1s ease}
+.reveal.in{opacity:1;transform:none}
 
-        .carousel-slide img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-
-        .hero-overlay {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);
-            padding: 4rem 2rem 2rem;
-            color: white;
-            z-index: 10;
-        }
-
-        .hero-content {
-            max-width: 1400px;
-            margin: 0 auto;
-        }
-
-        .hero-title {
-            font-size: 3.5rem;
-            font-weight: 300;
-            letter-spacing: 1px;
-            margin-bottom: 1rem;
-        }
-
-        .hero-subtitle {
-            font-size: 1.3rem;
-            font-weight: 300;
-            letter-spacing: 0.5px;
-            margin-bottom: 2rem;
-        }
-
-        .hero-price {
-            font-size: 1.2rem;
-            letter-spacing: 0.5px;
-        }
-
-        .carousel-dots {
-            position: absolute;
-            bottom: 50px;
-            left: 50%;
-            transform: translateX(-50%);
-            display: flex;
-            gap: 0.5rem;
-            z-index: 15;
-        }
-
-        .dot {
-            width: 12px;
-            height: 12px;
-            border-radius: 50%;
-            background: rgba(255, 255, 255, 0.4);
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-
-        .dot.active {
-            background: white;
-            width: 30px;
-            border-radius: 6px;
-        }
-
-        /* Content Sections */
-        section {
-            max-width: 1400px;
-            margin: 0 auto;
-            padding: 4rem 2rem;
-        }
-
-        .section-title {
-            font-size: 2.5rem;
-            font-weight: 300;
-            margin-bottom: 3rem;
-            letter-spacing: 1px;
-            text-align: center;
-        }
-
-        /* Property Details */
-        .details-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 2rem;
-            margin-bottom: 3rem;
-        }
-
-        .detail-card {
-            background: white;
-            padding: 2rem;
-            border: 1px solid #e8e8e8;
-            text-align: center;
-        }
-
-        .detail-value {
-            font-size: 2rem;
-            font-weight: 300;
-            color: #1a1a1a;
-            margin-bottom: 0.5rem;
-        }
-
-        .detail-label {
-            font-size: 0.9rem;
-            color: #666;
-            letter-spacing: 0.5px;
-            text-transform: uppercase;
-        }
-
-        /* Features Section */
-        .features {
-            background: white;
-        }
-
-        .features-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 2rem;
-        }
-
-        .feature {
-            padding: 1.5rem;
-            border-left: 3px solid #1a1a1a;
-            background: #fafafa;
-        }
-
-        .feature-title {
-            font-size: 1.1rem;
-            margin-bottom: 0.5rem;
-            font-weight: 500;
-        }
-
-        .feature-text {
-            font-size: 0.9rem;
-            color: #666;
-            line-height: 1.6;
-        }
-
-        /* Visit Section */
-        .visit {
-            background: #1a1a1a;
-            color: white;
-            text-align: center;
-        }
-
-        .visit .section-title {
-            color: white;
-        }
-
-        .visit-dates {
-            font-size: 2rem;
-            margin: 2rem 0;
-            font-weight: 300;
-            letter-spacing: 1px;
-        }
-
-        .visit-description {
-            font-size: 1.1rem;
-            color: #ccc;
-            max-width: 600px;
-            margin: 0 auto 2rem;
-        }
-
-        /* Contact Section */
-        .contact {
-            background: white;
-        }
-
-        .contact-content {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 4rem;
-            align-items: center;
-        }
-
-        .contact-info {
-            padding: 2rem;
-            background: #f5f5f5;
-        }
-
-        .contact-person {
-            margin-bottom: 2rem;
-        }
-
-        .contact-name {
-            font-size: 1.3rem;
-            font-weight: 500;
-            margin-bottom: 1rem;
-            letter-spacing: 0.5px;
-        }
-
-        .contact-detail {
-            margin: 0.5rem 0;
-            font-size: 1rem;
-            color: #555;
-        }
-
-        .contact-detail a {
-            color: #1a1a1a;
-            text-decoration: none;
-            border-bottom: 1px solid #1a1a1a;
-            transition: all 0.3s ease;
-        }
-
-        .contact-detail a:hover {
-            color: #666;
-            border-color: #666;
-        }
-
-        .cta-button {
-            display: inline-block;
-            padding: 1rem 2.5rem;
-            background: #1a1a1a;
-            color: white;
-            border: none;
-            font-size: 1rem;
-            letter-spacing: 1px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            margin-top: 2rem;
-            text-decoration: none;
-        }
-
-        .cta-button:hover {
-            background: #444;
-        }
-
-        /* Footer */
-        footer {
-            background: #1a1a1a;
-            color: white;
-            text-align: center;
-            padding: 2rem;
-            font-size: 0.9rem;
-            letter-spacing: 0.5px;
-        }
-
-        /* Responsive */
-        @media (max-width: 768px) {
-            .hero-title {
-                font-size: 2rem;
-            }
-
-            .hero-subtitle {
-                font-size: 1rem;
-            }
-
-            .section-title {
-                font-size: 1.8rem;
-            }
-
-            .details-grid {
-                grid-template-columns: 1fr 1fr;
-            }
-
-            .contact-content {
-                grid-template-columns: 1fr;
-                gap: 2rem;
-            }
-
-            .header-content {
-                flex-direction: column;
-                gap: 1rem;
-            }
-
-            .language-switcher {
-                justify-content: center;
-            }
-        }
-
-        /* Hidden content */
-        [data-lang]:not([data-lang="nl"]) {
-            display: none;
-        }
-
-        .lang-active {
-            display: block;
-        }
-    </style>
+/* ============ RESPONSIVE ============ */
+@media(max-width:900px){
+  section{padding:4.5rem 0}
+  .wrap{padding:0 1.5rem}
+  .nav{padding:0 1.5rem}
+  .nav-links{display:none}
+  .intro,.loc,.contact{grid-template-columns:1fr;gap:2.5rem}
+  .gallery{grid-template-columns:repeat(2,1fr)}
+  .features{grid-template-columns:repeat(2,1fr)}
+  .tile.tall{grid-row:span 1;aspect-ratio:4/3}
+  .hero .price{font-size:1.35rem}
+}
+@media(max-width:560px){
+  .facts{grid-template-columns:1fr 1fr}
+  .gallery{grid-template-columns:1fr 1fr;gap:8px}
+  .features{grid-template-columns:1fr}
+  .brand .sub{display:none}
+  .doc{gap:1rem}
+  .doc .tag{display:none}
+}
+</style>
 </head>
 <body>
-    <!-- Header -->
-    <header>
-        <div class="header-content">
-            <div class="logo">PROPERTY</div>
-            <div class="language-switcher">
-                <button class="lang-btn active" data-lang="nl">NL</button>
-                <button class="lang-btn" data-lang="en">EN</button>
-                <button class="lang-btn" data-lang="fr">FR</button>
-            </div>
+
+<!-- ===== NAV ===== -->
+<header id="hdr">
+  <nav class="nav">
+    <a href="#top" class="brand">
+      <span class="mark">CP&nbsp;45</span>
+      <span class="sub">Aartselaar</span>
+    </a>
+    <ul class="nav-links">
+      <li><a href="#overview" data-i18n="nav.overview">Overzicht</a></li>
+      <li><a href="#gallery" data-i18n="nav.gallery">Galerij</a></li>
+      <li><a href="#features" data-i18n="nav.features">Troeven</a></li>
+      <li><a href="#documents" data-i18n="nav.documents">Documenten</a></li>
+      <li><a href="#location" data-i18n="nav.location">Ligging</a></li>
+    </ul>
+    <div class="nav-right">
+      <div class="lang" id="lang">
+        <button data-lang="nl" class="active">NL</button><span>·</span>
+        <button data-lang="en">EN</button><span>·</span>
+        <button data-lang="fr">FR</button>
+      </div>
+      <a href="#contact" class="btn" data-i18n="nav.book">Plan een bezoek</a>
+    </div>
+  </nav>
+</header>
+
+<!-- ===== HERO ===== -->
+<span id="top"></span>
+<section class="hero">
+  <div class="hero-track" id="heroTrack"></div>
+  <div class="hero-veil"></div>
+  <div class="hero-content">
+    <div class="eyebrow" data-i18n="hero.location">Aartselaar · België</div>
+    <h1>Camiel Paulusstraat 45</h1>
+    <p class="tagline" data-i18n="hero.tagline">Volledig gerenoveerde halfopen woning met veel licht, een ruime keuken en een aangelegde tuin.</p>
+    <div class="price" data-i18n="hero.price">Bieden vanaf € 598.000</div>
+    <div class="cta-row">
+      <a href="#contact" class="btn btn-solid" data-i18n="hero.cta_visit">Plan een bezoek</a>
+      <a href="#gallery" class="btn" data-i18n="hero.cta_gallery">Bekijk de woning</a>
+    </div>
+  </div>
+  <div class="scroll-cue"><span data-i18n="hero.scroll">Scroll</span><span class="line"></span></div>
+</section>
+
+<!-- ===== INTRO + FACTS ===== -->
+<section id="overview">
+  <div class="wrap intro">
+    <div class="reveal">
+      <div class="eyebrow" data-i18n="intro.eyebrow">De woning</div>
+      <h2 data-i18n="intro.heading">Klaar om in te wonen, niets meer aan te doen.</h2>
+      <div class="rule"></div>
+      <p data-i18n="intro.body">Deze halfopen woning werd in 2019 volledig gerenoveerd en is in uitstekende staat. Ze biedt 220 m² woonruimte, drie slaapkamers, twee badkamers en een verzorgde tuin — op een rustige, gezinsvriendelijke locatie met snelle verbinding naar Brussel en Antwerpen.</p>
+    </div>
+    <div class="facts reveal" id="facts"></div>
+  </div>
+</section>
+
+<!-- ===== GALLERY ===== -->
+<section id="gallery" class="gallery-sec">
+  <div class="wrap center">
+    <div class="eyebrow reveal" data-i18n="gallery.eyebrow">Galerij</div>
+    <h2 class="reveal" style="font-size:clamp(2rem,3.6vw,3rem)" data-i18n="gallery.heading">Een blik binnen</h2>
+    <div class="rule reveal"></div>
+  </div>
+  <div class="wrap"><div class="gallery reveal" id="gallery"></div></div>
+</section>
+
+<!-- ===== FEATURES ===== -->
+<section id="features" class="features-sec">
+  <div class="wrap center">
+    <div class="eyebrow reveal" data-i18n="features.eyebrow">Troeven</div>
+    <h2 class="reveal" style="font-size:clamp(2rem,3.6vw,3rem)" data-i18n="features.heading">Waarom deze woning</h2>
+    <div class="rule reveal"></div>
+  </div>
+  <div class="wrap"><div class="features reveal" id="features"></div></div>
+</section>
+
+<!-- ===== VISIT BAND ===== -->
+<section class="visit">
+  <div class="wrap">
+    <div class="eyebrow reveal" data-i18n="visit.eyebrow">Bezoekweekend</div>
+    <h2 class="dates reveal">19 &amp; 20/09 2026</h2>
+    <p class="reveal" data-i18n="visit.body">Kom de woning ontdekken tijdens ons bezoekweekend. Maak vooraf een afspraak met Tom Mertens.</p>
+    <div class="avail reveal" data-i18n="visit.avail">Beschikbaar vanaf 1 juni 2027</div>
+    <div class="reveal"><a href="#contact" class="btn" data-i18n="visit.cta">Maak een afspraak</a></div>
+  </div>
+</section>
+
+<!-- ===== DOCUMENTS ===== -->
+<section id="documents" class="docs-sec">
+  <div class="wrap">
+    <div class="center">
+      <div class="eyebrow reveal" data-i18n="docs.eyebrow">Documenten</div>
+      <h2 class="reveal" style="font-size:clamp(2rem,3.6vw,3rem)" data-i18n="docs.heading">Praktische documenten</h2>
+      <div class="rule reveal" style="margin-left:auto;margin-right:auto"></div>
+    </div>
+    <div class="docs reveal" id="docs"></div>
+  </div>
+</section>
+
+<!-- ===== LOCATION ===== -->
+<section id="location" class="loc-sec">
+  <div class="wrap loc">
+    <div class="reveal">
+      <div class="eyebrow" data-i18n="loc.eyebrow">Ligging</div>
+      <h2 data-i18n="loc.heading">Aartselaar</h2>
+      <div class="rule"></div>
+      <p data-i18n="loc.body">Een groene, gezinsvriendelijke buurt met scholen, winkels en het openbaar vervoer in de buurt. De op- en afritten naar de E19 en A12 liggen vlakbij, met een snelle verbinding richting Brussel en Antwerpen.</p>
+      <div class="loc-points" id="locPoints"></div>
+    </div>
+    <div class="loc-img reveal"><img src="Images/Immovran-2.jpg" alt="Achtergevel en tuin"></div>
+  </div>
+</section>
+
+<!-- ===== CONTACT ===== -->
+<section id="contact" class="contact-sec">
+  <div class="wrap contact">
+    <div class="reveal">
+      <div class="eyebrow" data-i18n="contact.eyebrow">Contact</div>
+      <h2 data-i18n="contact.heading">Plan uw bezoek</h2>
+      <div class="rule"></div>
+      <p data-i18n="contact.body">Interesse in deze woning of een rondleiding? Neem gerust contact op — u krijgt snel een antwoord.</p>
+      <div class="price" style="font-family:'Cormorant Garamond',serif;font-size:1.6rem;color:#fff;margin-top:1.8rem" data-i18n="contact.price">Bieden vanaf € 598.000</div>
+    </div>
+    <div class="card reveal">
+      <div class="agent">Tom Mertens</div>
+      <div class="role" data-i18n="contact.role">Contactpersoon</div>
+      <div class="ci">
+        <div class="ci-row">
+          <span class="lab" data-i18n="contact.phone">Telefoon</span>
+          <a href="tel:+32472384242">+32 472 38 42 42</a>
         </div>
-    </header>
-
-    <!-- Hero Section -->
-    <section class="hero">
-        <div class="carousel-container">
-            <div class="carousel-slide active">
-                <div style="width: 100%; height: 100%; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);"></div>
-            </div>
-            <div class="carousel-slide">
-                <div style="width: 100%; height: 100%; background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);"></div>
-            </div>
-            <div class="carousel-slide">
-                <div style="width: 100%; height: 100%; background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);"></div>
-            </div>
-            <div class="carousel-slide">
-                <div style="width: 100%; height: 100%; background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);"></div>
-            </div>
-            <div class="carousel-slide">
-                <div style="width: 100%; height: 100%; background: linear-gradient(135deg, #fa709a 0%, #fee140 100%);"></div>
-            </div>
-
-            <div class="hero-overlay">
-                <div class="hero-content">
-                    <h1 class="hero-title" data-lang="nl">Luxe Woning in Aartselaar</h1>
-                    <h1 class="hero-title lang-hidden" data-lang="en" style="display: none;">Luxury Home in Aartselaar</h1>
-                    <h1 class="hero-title lang-hidden" data-lang="fr" style="display: none;">Maison de Luxe à Aartselaar</h1>
-
-                    <p class="hero-subtitle" data-lang="nl">Moderne architectuur. Uitstekende locatie. Premium afwerking.</p>
-                    <p class="hero-subtitle lang-hidden" data-lang="en" style="display: none;">Modern architecture. Excellent location. Premium finishing.</p>
-                    <p class="hero-subtitle lang-hidden" data-lang="fr" style="display: none;">Architecture moderne. Excellent emplacement. Finitions premium.</p>
-
-                    <div class="hero-price" data-lang="nl">Vanaf € 598.000</div>
-                    <div class="hero-price lang-hidden" data-lang="en" style="display: none;">From € 598,000</div>
-                    <div class="hero-price lang-hidden" data-lang="fr" style="display: none;">À partir de € 598.000</div>
-                </div>
-            </div>
+        <div class="ci-row">
+          <span class="lab" data-i18n="contact.email">E-mail</span>
+          <a href="mailto:CP45_Aartselaar@hotmail.com">CP45_Aartselaar@hotmail.com</a>
         </div>
+      </div>
+      <a href="tel:+32472384242" class="btn" data-i18n="contact.call">Bel nu</a>
+    </div>
+  </div>
+</section>
 
-        <div class="carousel-dots">
-            <span class="dot active" onclick="currentSlide(0)"></span>
-            <span class="dot" onclick="currentSlide(1)"></span>
-            <span class="dot" onclick="currentSlide(2)"></span>
-            <span class="dot" onclick="currentSlide(3)"></span>
-            <span class="dot" onclick="currentSlide(4)"></span>
-        </div>
-    </section>
+<!-- ===== FOOTER ===== -->
+<footer>
+  <div class="wrap foot">
+    <div class="fmark">Camiel Paulusstraat 45 · Aartselaar</div>
+    <div class="fprice" data-i18n="footer.price">Bieden vanaf € 598.000 · Beschikbaar 1 juni 2027</div>
+    <p class="disc" data-i18n="footer.disc">Vrijblijvende informatie, onder voorbehoud van wijzigingen. Deze website heeft geen contractuele waarde. Afmetingen en gegevens zijn indicatief.</p>
+  </div>
+</footer>
 
-    <!-- Property Details -->
-    <section class="details">
-        <h2 class="section-title" data-lang="nl">De Woning</h2>
-        <h2 class="section-title lang-hidden" data-lang="en" style="display: none;">The Property</h2>
-        <h2 class="section-title lang-hidden" data-lang="fr" style="display: none;">La Propriété</h2>
+<!-- ===== LIGHTBOX ===== -->
+<div class="lb" id="lb">
+  <span class="lb-close" id="lbClose">×</span>
+  <span class="lb-nav lb-prev" id="lbPrev">‹</span>
+  <img id="lbImg" src="" alt="">
+  <span class="lb-nav lb-next" id="lbNext">›</span>
+</div>
 
-        <div class="details-grid">
-            <div class="detail-card">
-                <div class="detail-value">220 m²</div>
-                <div class="detail-label" data-lang="nl">Woonoppervlak</div>
-                <div class="detail-label lang-hidden" data-lang="en" style="display: none;">Living Area</div>
-                <div class="detail-label lang-hidden" data-lang="fr" style="display: none;">Surface Habitable</div>
-            </div>
-            <div class="detail-card">
-                <div class="detail-value">276 m²</div>
-                <div class="detail-label" data-lang="nl">Totaal Terrein</div>
-                <div class="detail-label lang-hidden" data-lang="en" style="display: none;">Total Land</div>
-                <div class="detail-label lang-hidden" data-lang="fr" style="display: none;">Terrain Total</div>
-            </div>
-            <div class="detail-card">
-                <div class="detail-value">3</div>
-                <div class="detail-label" data-lang="nl">Slaapkamers</div>
-                <div class="detail-label lang-hidden" data-lang="en" style="display: none;">Bedrooms</div>
-                <div class="detail-label lang-hidden" data-lang="fr" style="display: none;">Chambres</div>
-            </div>
-            <div class="detail-card">
-                <div class="detail-value">2</div>
-                <div class="detail-label" data-lang="nl">Badkamers</div>
-                <div class="detail-label lang-hidden" data-lang="en" style="display: none;">Bathrooms</div>
-                <div class="detail-label lang-hidden" data-lang="fr" style="display: none;">Salles de Bain</div>
-            </div>
-            <div class="detail-card">
-                <div class="detail-value">2019</div>
-                <div class="detail-label" data-lang="nl">Renovatiejaar</div>
-                <div class="detail-label lang-hidden" data-lang="en" style="display: none;">Renovation Year</div>
-                <div class="detail-label lang-hidden" data-lang="fr" style="display: none;">Année Rénovation</div>
-            </div>
-            <div class="detail-card">
-                <div class="detail-value">B</div>
-                <div class="detail-label" data-lang="nl">EPC Classificatie</div>
-                <div class="detail-label lang-hidden" data-lang="en" style="display: none;">EPC Rating</div>
-                <div class="detail-label lang-hidden" data-lang="fr" style="display: none;">Classement PEB</div>
-            </div>
-        </div>
-    </section>
+<script>
+/* ====================== DATA ====================== */
+const GALLERY = [
+  {src:"Images/Immovran-2.jpg",  c:{nl:"Achtergevel & tuin",en:"Rear facade & garden",fr:"Façade arrière & jardin"}, tall:true},
+  {src:"Images/Immovran-25.jpg", c:{nl:"Keuken & lichtstraat",en:"Kitchen & atrium",fr:"Cuisine & verrière"}},
+  {src:"Images/Immovran-13.jpg", c:{nl:"Open keuken",en:"Open kitchen",fr:"Cuisine ouverte"}},
+  {src:"Images/Immovran-20.jpg", c:{nl:"Eetkamer",en:"Dining room",fr:"Salle à manger"}},
+  {src:"Images/Immovran-23.jpg", c:{nl:"Inbouw gashaard",en:"Built-in gas fire",fr:"Foyer au gaz"}, tall:true},
+  {src:"Images/Immovran-18.jpg", c:{nl:"Leefruimte",en:"Living room",fr:"Séjour"}},
+  {src:"Images/Immovran-12.jpg", c:{nl:"Keuken in detail",en:"Kitchen detail",fr:"Détail cuisine"}},
+  {src:"Images/Immovran-24.jpg", c:{nl:"Open leefruimte",en:"Open living",fr:"Espace de vie"}},
+  {src:"Images/Immovran-36.jpg", c:{nl:"Zonneterras",en:"Sun terrace",fr:"Terrasse"}},
+  {src:"Images/Immovran-43.jpg", c:{nl:"Badkamer",en:"Bathroom",fr:"Salle de bain"}},
+  {src:"Images/Immovran-49.jpg", c:{nl:"Slaapkamer met inbouwkasten",en:"Bedroom with fitted wardrobes",fr:"Chambre avec dressing"}},
+  {src:"Images/Immovran-35.jpg", c:{nl:"Tuin",en:"Garden",fr:"Jardin"}},
+];
 
-    <!-- Features -->
-    <section class="features">
-        <h2 class="section-title" data-lang="nl">Waarom Deze Woning</h2>
-        <h2 class="section-title lang-hidden" data-lang="en" style="display: none;">Why This Property</h2>
-        <h2 class="section-title lang-hidden" data-lang="fr" style="display: none;">Pourquoi Cette Propriété</h2>
+const FEATURES = {
+  nl:["Sterk EPC-label (B · 208 kWh/m²)","Zonnepanelen","Ruime open keuken","Garage met oprit","Plaats voor 2 wagens buiten","Zonneterras op de eerste verdieping","Aangelegde tuin","Volledig voorzien van airconditioning","Automatische rolluiken","Inbouw gashaard","Inbouwkasten","Muggenramen","Snelle verbinding E19 & A12 (Brussel · Antwerpen)","Gezinsvriendelijke buurt","Mobiscore 8+","Elektriciteit conform gekeurd","Asbestveilig"],
+  en:["Strong EPC label (B · 208 kWh/m²)","Solar panels","Spacious open kitchen","Garage with driveway","Room for 2 cars outside","Sun terrace on the first floor","Landscaped garden","Fully air-conditioned","Automatic roller shutters","Built-in gas fireplace","Fitted wardrobes","Insect screens","Fast access to E19 & A12 (Brussels · Antwerp)","Family-friendly neighbourhood","Mobiscore 8+","Electrical installation certified","Asbestos-safe"],
+  fr:["Excellent label PEB (B · 208 kWh/m²)","Panneaux solaires","Grande cuisine ouverte","Garage avec allée","Place pour 2 voitures à l'extérieur","Terrasse au premier étage","Jardin aménagé","Entièrement climatisée","Volets roulants automatiques","Foyer au gaz intégré","Armoires encastrées","Moustiquaires","Accès rapide E19 & A12 (Bruxelles · Anvers)","Quartier familial","Mobiscore 8+","Électricité conforme","Sans amiante"]
+};
 
-        <div class="features-grid">
-            <div class="feature">
-                <div class="feature-title" data-lang="nl">Energieklasse B</div>
-                <div class="feature-title lang-hidden" data-lang="en" style="display: none;">Energy Class B</div>
-                <div class="feature-title lang-hidden" data-lang="fr" style="display: none;">Classe Énergétique B</div>
-                <p class="feature-text" data-lang="nl">Uitstekende energieefficiëntie</p>
-                <p class="feature-text lang-hidden" data-lang="en" style="display: none;">Excellent energy efficiency</p>
-                <p class="feature-text lang-hidden" data-lang="fr" style="display: none;">Excellente efficacité énergétique</p>
-            </div>
-            <div class="feature">
-                <div class="feature-title" data-lang="nl">Zonnepanelen</div>
-                <div class="feature-title lang-hidden" data-lang="en" style="display: none;">Solar Panels</div>
-                <div class="feature-title lang-hidden" data-lang="fr" style="display: none;">Panneaux Solaires</div>
-                <p class="feature-text" data-lang="nl">Duurzame energievoorziening</p>
-                <p class="feature-text lang-hidden" data-lang="en" style="display: none;">Sustainable energy supply</p>
-                <p class="feature-text lang-hidden" data-lang="fr" style="display: none;">Approvisionnement énergétique durable</p>
-            </div>
-            <div class="feature">
-                <div class="feature-title" data-lang="nl">Halfopen Indeling</div>
-                <div class="feature-title lang-hidden" data-lang="en" style="display: none;">Open Layout</div>
-                <div class="feature-title lang-hidden" data-lang="fr" style="display: none;">Disposition Ouverte</div>
-                <p class="feature-text" data-lang="nl">Ruime keuken met veel licht</p>
-                <p class="feature-text lang-hidden" data-lang="en" style="display: none;">Spacious kitchen with natural light</p>
-                <p class="feature-text lang-hidden" data-lang="fr" style="display: none;">Cuisine spacieuse avec lumière naturelle</p>
-            </div>
-            <div class="feature">
-                <div class="feature-title" data-lang="nl">Airconditioning</div>
-                <div class="feature-title lang-hidden" data-lang="en" style="display: none;">Air Conditioning</div>
-                <div class="feature-title lang-hidden" data-lang="fr" style="display: none;">Climatisation</div>
-                <p class="feature-text" data-lang="nl">Volledig geïnstalleerd</p>
-                <p class="feature-text lang-hidden" data-lang="en" style="display: none;">Fully installed throughout</p>
-                <p class="feature-text lang-hidden" data-lang="fr" style="display: none;">Entièrement installée</p>
-            </div>
-            <div class="feature">
-                <div class="feature-title" data-lang="nl">Garage & Oprit</div>
-                <div class="feature-title lang-hidden" data-lang="en" style="display: none;">Garage & Driveway</div>
-                <div class="feature-title lang-hidden" data-lang="fr" style="display: none;">Garage & Allée</div>
-                <p class="feature-text" data-lang="nl">Parkeerplaats voor 2 auto's</p>
-                <p class="feature-text lang-hidden" data-lang="en" style="display: none;">Parking for 2 cars</p>
-                <p class="feature-text lang-hidden" data-lang="fr" style="display: none;">Stationnement pour 2 voitures</p>
-            </div>
-            <div class="feature">
-                <div class="feature-title" data-lang="nl">Zonneterras</div>
-                <div class="feature-title lang-hidden" data-lang="en" style="display: none;">Sun Terrace</div>
-                <div class="feature-title lang-hidden" data-lang="fr" style="display: none;">Terrasse Ensoleillée</div>
-                <p class="feature-text" data-lang="nl">Eerste verdieping</p>
-                <p class="feature-text lang-hidden" data-lang="en" style="display: none;">First floor access</p>
-                <p class="feature-text lang-hidden" data-lang="fr" style="display: none;">Accès premier étage</p>
-            </div>
-            <div class="feature">
-                <div class="feature-title" data-lang="nl">Mooie Tuin</div>
-                <div class="feature-title lang-hidden" data-lang="en" style="display: none;">Beautiful Garden</div>
-                <div class="feature-title lang-hidden" data-lang="fr" style="display: none;">Beau Jardin</div>
-                <p class="feature-text" data-lang="nl">Goed onderhouden</p>
-                <p class="feature-text lang-hidden" data-lang="en" style="display: none;">Well maintained</p>
-                <p class="feature-text lang-hidden" data-lang="fr" style="display: none;">Bien entretenu</p>
-            </div>
-            <div class="feature">
-                <div class="feature-title" data-lang="nl">Goede Bereikbaarheid</div>
-                <div class="feature-title lang-hidden" data-lang="en" style="display: none;">Excellent Accessibility</div>
-                <div class="feature-title lang-hidden" data-lang="fr" style="display: none;">Excellente Accessibilité</div>
-                <p class="feature-text" data-lang="nl">Snel naar Brussel & Antwerpen</p>
-                <p class="feature-text lang-hidden" data-lang="en" style="display: none;">Quick access to Brussels & Antwerp</p>
-                <p class="feature-text lang-hidden" data-lang="fr" style="display: none;">Accès rapide à Bruxelles & Anvers</p>
-            </div>
-        </div>
-    </section>
+const FACTS = {
+  nl:[["220 m²","Bewoonbaar"],["276 m²","Perceel"],["3","Slaapkamers"],["2","Badkamers"],["Halfopen","Type woning"],["2019","Renovatie"],["Uitstekend","Staat"],["B · 208","EPC kWh/m²"]],
+  en:[["220 m²","Living area"],["276 m²","Total plot"],["3","Bedrooms"],["2","Bathrooms"],["Semi-detached","Property type"],["2019","Renovated"],["Excellent","Condition"],["B · 208","EPC kWh/m²"]],
+  fr:[["220 m²","Habitable"],["276 m²","Terrain"],["3","Chambres"],["2","Salles de bain"],["Semi-mitoyenne","Type de bien"],["2019","Rénovation"],["Excellent","État"],["B · 208","PEB kWh/m²"]]
+};
 
-    <!-- Visit Section -->
-    <section class="visit">
-        <h2 class="section-title" data-lang="nl">Plan Je Bezoek</h2>
-        <h2 class="section-title lang-hidden" data-lang="en" style="display: none;">Plan Your Visit</h2>
-        <h2 class="section-title lang-hidden" data-lang="fr" style="display: none;">Planifiez Votre Visite</h2>
+const DOCS = [
+  {href:"Annexes/Certificaat-%20Camiel%20Paulusstraat%2045,%2019-02-2026%20-RES-3.pdf", n:{nl:"Energieprestatiecertificaat (EPC)",en:"Energy performance certificate (EPC)",fr:"Certificat de performance énergétique (PEB)"}},
+  {href:"Annexes/Camiel%20Paulusstraat%2045%20te%20Aartselaar%20-%20ASB.pdf", n:{nl:"Asbestattest",en:"Asbestos certificate",fr:"Attestation amiante"}},
+  {href:"Annexes/Keuring%20Elektriciteit.pdf", n:{nl:"Keuringsverslag elektriciteit",en:"Electrical inspection report",fr:"Rapport de contrôle électrique"}},
+  {href:"Annexes/20260419_overstromingsattest_11001B0222-00X000.pdf", n:{nl:"Overstromingsattest",en:"Flood risk certificate",fr:"Certificat de risque d'inondation"}},
+  {href:"Annexes/Huis%20Plannen_Camiel%20Paulust%2045.pdf", n:{nl:"Plannen van de woning",en:"Floor plans",fr:"Plans de la maison"}},
+];
 
-        <p class="visit-description" data-lang="nl">De woning is beschikbaar voor bezichtiging op het aangegeven weekend.</p>
-        <p class="visit-description lang-hidden" data-lang="en" style="display: none;">The property is available for viewings on the indicated weekend.</p>
-        <p class="visit-description lang-hidden" data-lang="fr" style="display: none;">La propriété est disponible pour des visites le week-end indiqué.</p>
+const LOCPOINTS = {
+  nl:[["8+","Mobiscore — vlot bereikbaar met fiets, auto en openbaar vervoer"],["10 min","Tot de op- en afritten van E19 & A12"],["★","Rustige, gezinsvriendelijke buurt"]],
+  en:[["8+","Mobiscore — easy by bike, car and public transport"],["10 min","To the E19 & A12 motorway access"],["★","Quiet, family-friendly neighbourhood"]],
+  fr:[["8+","Mobiscore — accessible à vélo, en voiture et en transports"],["10 min","Vers les accès E19 & A12"],["★","Quartier calme et familial"]]
+};
 
-        <div class="visit-dates">19 & 20 September 2026</div>
+const I18N = {
+  nl:{
+    "nav.overview":"Overzicht","nav.gallery":"Galerij","nav.features":"Troeven","nav.documents":"Documenten","nav.location":"Ligging","nav.book":"Plan een bezoek",
+    "hero.location":"Aartselaar · België","hero.tagline":"Volledig gerenoveerde halfopen woning met veel licht, een ruime keuken en een aangelegde tuin.","hero.price":"Bieden vanaf € 598.000","hero.cta_visit":"Plan een bezoek","hero.cta_gallery":"Bekijk de woning","hero.scroll":"Scroll",
+    "intro.eyebrow":"De woning","intro.heading":"Klaar om in te wonen, niets meer aan te doen.","intro.body":"Deze halfopen woning werd in 2019 volledig gerenoveerd en is in uitstekende staat. Ze biedt 220 m² woonruimte, drie slaapkamers, twee badkamers en een verzorgde tuin — op een rustige, gezinsvriendelijke locatie met snelle verbinding naar Brussel en Antwerpen.",
+    "gallery.eyebrow":"Galerij","gallery.heading":"Een blik binnen",
+    "features.eyebrow":"Troeven","features.heading":"Waarom deze woning",
+    "visit.eyebrow":"Bezoekweekend","visit.body":"Kom de woning ontdekken tijdens ons bezoekweekend. Maak vooraf een afspraak met Tom Mertens.","visit.avail":"Beschikbaar vanaf 1 juni 2027","visit.cta":"Maak een afspraak",
+    "docs.eyebrow":"Documenten","docs.heading":"Praktische documenten",
+    "loc.eyebrow":"Ligging","loc.heading":"Aartselaar","loc.body":"Een groene, gezinsvriendelijke buurt met scholen, winkels en openbaar vervoer in de buurt. De op- en afritten naar de E19 en A12 liggen vlakbij, met een snelle verbinding richting Brussel en Antwerpen.",
+    "contact.eyebrow":"Contact","contact.heading":"Plan uw bezoek","contact.body":"Interesse in deze woning of een rondleiding? Neem gerust contact op — u krijgt snel een antwoord.","contact.price":"Bieden vanaf € 598.000","contact.role":"Contactpersoon","contact.phone":"Telefoon","contact.email":"E-mail","contact.call":"Bel nu",
+    "footer.price":"Bieden vanaf € 598.000 · Beschikbaar 1 juni 2027","footer.disc":"Vrijblijvende informatie, onder voorbehoud van wijzigingen. Deze website heeft geen contractuele waarde. Afmetingen en gegevens zijn indicatief."
+  },
+  en:{
+    "nav.overview":"Overview","nav.gallery":"Gallery","nav.features":"Highlights","nav.documents":"Documents","nav.location":"Location","nav.book":"Book a viewing",
+    "hero.location":"Aartselaar · Belgium","hero.tagline":"A fully renovated semi-detached home with plenty of light, a spacious kitchen and a landscaped garden.","hero.price":"Offers from € 598,000","hero.cta_visit":"Book a viewing","hero.cta_gallery":"View the home","hero.scroll":"Scroll",
+    "intro.eyebrow":"The property","intro.heading":"Move-in ready, nothing left to do.","intro.body":"This semi-detached home was fully renovated in 2019 and is in excellent condition. It offers 220 m² of living space, three bedrooms, two bathrooms and a well-kept garden — in a quiet, family-friendly location with fast links to Brussels and Antwerp.",
+    "gallery.eyebrow":"Gallery","gallery.heading":"A look inside",
+    "features.eyebrow":"Highlights","features.heading":"Why this home",
+    "visit.eyebrow":"Open house weekend","visit.body":"Come and discover the home during our open house weekend. Please book an appointment with Tom Mertens in advance.","visit.avail":"Available from 1 June 2027","visit.cta":"Request an appointment",
+    "docs.eyebrow":"Documents","docs.heading":"Practical documents",
+    "loc.eyebrow":"Location","loc.heading":"Aartselaar","loc.body":"A green, family-friendly neighbourhood with schools, shops and public transport nearby. The E19 and A12 motorway access points are close by, with fast links towards Brussels and Antwerp.",
+    "contact.eyebrow":"Contact","contact.heading":"Arrange your visit","contact.body":"Interested in this home or a tour? Feel free to get in touch — you'll get a quick reply.","contact.price":"Offers from € 598,000","contact.role":"Contact","contact.phone":"Phone","contact.email":"E-mail","contact.call":"Call now",
+    "footer.price":"Offers from € 598,000 · Available 1 June 2027","footer.disc":"Information without obligation, subject to change. This website has no contractual value. Dimensions and details are indicative."
+  },
+  fr:{
+    "nav.overview":"Aperçu","nav.gallery":"Galerie","nav.features":"Atouts","nav.documents":"Documents","nav.location":"Emplacement","nav.book":"Planifier une visite",
+    "hero.location":"Aartselaar · Belgique","hero.tagline":"Maison semi-mitoyenne entièrement rénovée, lumineuse, avec une grande cuisine et un jardin aménagé.","hero.price":"Offres à partir de € 598.000","hero.cta_visit":"Planifier une visite","hero.cta_gallery":"Voir le bien","hero.scroll":"Scroll",
+    "intro.eyebrow":"Le bien","intro.heading":"Prêt à emménager, rien à refaire.","intro.body":"Cette maison semi-mitoyenne a été entièrement rénovée en 2019 et est en excellent état. Elle offre 220 m² habitables, trois chambres, deux salles de bain et un jardin soigné — dans un quartier calme et familial, avec un accès rapide à Bruxelles et Anvers.",
+    "gallery.eyebrow":"Galerie","gallery.heading":"Un aperçu de l'intérieur",
+    "features.eyebrow":"Atouts","features.heading":"Pourquoi ce bien",
+    "visit.eyebrow":"Week-end portes ouvertes","visit.body":"Venez découvrir la maison lors de notre week-end portes ouvertes. Merci de prendre rendez-vous au préalable avec Tom Mertens.","visit.avail":"Disponible à partir du 1 juin 2027","visit.cta":"Prendre rendez-vous",
+    "docs.eyebrow":"Documents","docs.heading":"Documents pratiques",
+    "loc.eyebrow":"Emplacement","loc.heading":"Aartselaar","loc.body":"Un quartier vert et familial, avec écoles, commerces et transports à proximité. Les accès aux autoroutes E19 et A12 sont tout proches, avec une liaison rapide vers Bruxelles et Anvers.",
+    "contact.eyebrow":"Contact","contact.heading":"Organisez votre visite","contact.body":"Intéressé par ce bien ou une visite ? N'hésitez pas à nous contacter — vous recevrez une réponse rapidement.","contact.price":"Offres à partir de € 598.000","contact.role":"Personne de contact","contact.phone":"Téléphone","contact.email":"E-mail","contact.call":"Appeler",
+    "footer.price":"Offres à partir de € 598.000 · Disponible le 1 juin 2027","footer.disc":"Informations sans engagement, sous réserve de modifications. Ce site n'a aucune valeur contractuelle. Les dimensions et données sont indicatives."
+  }
+};
 
-        <p class="visit-description" data-lang="nl">Neem contact op met de agent voor een rondleiding</p>
-        <p class="visit-description lang-hidden" data-lang="en" style="display: none;">Contact the agent for a tour</p>
-        <p class="visit-description lang-hidden" data-lang="fr" style="display: none;">Contactez l'agent pour une visite</p>
+/* ====================== RENDER ====================== */
+const $ = s => document.querySelector(s);
 
-        <p style="color: #ccc; margin-top: 2rem; font-size: 0.95rem;">
-            <span data-lang="nl">Beschikbaar vanaf 1 juni 2027</span>
-            <span class="lang-hidden" data-lang="en" style="display: none;">Available from June 1, 2027</span>
-            <span class="lang-hidden" data-lang="fr" style="display: none;">Disponible à partir du 1er juin 2027</span>
-        </p>
-    </section>
+// Hero marquee — duplicate the set for a seamless loop
+(function(){
+  const heroImgs = ["Immovran-2","Immovran-25","Immovran-13","Immovran-20","Immovran-18","Immovran-23","Immovran-36","Immovran-35"];
+  const set = heroImgs.map(n=>`<div class="slide"><img src="Images/${n}.jpg" alt=""></div>`).join("");
+  $("#heroTrack").innerHTML = set + set;
+})();
 
-    <!-- Contact Section -->
-    <section class="contact">
-        <h2 class="section-title" data-lang="nl">Neem Contact Op</h2>
-        <h2 class="section-title lang-hidden" data-lang="en" style="display: none;">Get In Touch</h2>
-        <h2 class="section-title lang-hidden" data-lang="fr" style="display: none;">Prenez Contact</h2>
+function renderGallery(lang){
+  $("#gallery").innerHTML = GALLERY.map((g,i)=>
+    `<div class="tile${g.tall?' tall':''}" data-idx="${i}">
+       <img src="${g.src}" alt="${g.c[lang]}" loading="lazy">
+       <div class="cap">${g.c[lang]}</div>
+     </div>`).join("");
+  document.querySelectorAll('.tile').forEach(t=>t.addEventListener('click',()=>openLB(+t.dataset.idx)));
+}
+function renderFeatures(lang){
+  $("#features").innerHTML = FEATURES[lang].map(f=>
+    `<div class="feature"><span class="ico">—</span><span class="ft">${f}</span></div>`).join("");
+}
+function renderFacts(lang){
+  $("#facts").innerHTML = FACTS[lang].map(f=>
+    `<div class="fact"><div class="v">${f[0]}</div><div class="l">${f[1]}</div></div>`).join("");
+}
+function renderDocs(lang){
+  $("#docs").innerHTML = DOCS.map(d=>
+    `<a class="doc" href="${d.href}" target="_blank" rel="noopener">
+       <span class="tag">PDF</span><span class="name">${d.n[lang]}</span><span class="arrow">↗</span>
+     </a>`).join("");
+}
+function renderLocPoints(lang){
+  $("#locPoints").innerHTML = LOCPOINTS[lang].map(p=>
+    `<div class="loc-point"><span class="k">${p[0]}</span><span class="t">${p[1]}</span></div>`).join("");
+}
 
-        <div class="contact-content">
-            <div class="contact-info">
-                <div class="contact-person">
-                    <div class="contact-name">Tom Mertens</div>
-                    <div class="contact-detail">
-                        <a href="tel:+32472384242">+32 472 384 242</a>
-                    </div>
-                    <div class="contact-detail">
-                        <a href="mailto:CP45_Aartselaar@hotmail.com">CP45_Aartselaar@hotmail.com</a>
-                    </div>
-                </div>
-                <div class="cta-button" style="margin: 0;">
-                    <span data-lang="nl">Bel nu voor een bezichtiging</span>
-                    <span class="lang-hidden" data-lang="en" style="display: none;">Call for a viewing</span>
-                    <span class="lang-hidden" data-lang="fr" style="display: none;">Appelez pour une visite</span>
-                </div>
-            </div>
+/* ====================== I18N ====================== */
+function setLang(lang){
+  document.documentElement.lang = lang;
+  document.querySelectorAll('[data-i18n]').forEach(el=>{
+    const v = I18N[lang][el.getAttribute('data-i18n')];
+    if(v!=null) el.innerHTML = v;
+  });
+  renderGallery(lang); renderFeatures(lang); renderFacts(lang); renderDocs(lang); renderLocPoints(lang);
+  document.querySelectorAll('#lang button').forEach(b=>b.classList.toggle('active',b.dataset.lang===lang));
+  try{ localStorage.setItem('cp45_lang',lang); }catch(e){}
+}
+document.querySelectorAll('#lang button').forEach(b=>
+  b.addEventListener('click',()=>setLang(b.dataset.lang)));
 
-            <div class="contact-info">
-                <h3 style="margin-bottom: 1rem; font-weight: 500;">
-                    <span data-lang="nl">Contactgegevens</span>
-                    <span class="lang-hidden" data-lang="en" style="display: none;">Contact Information</span>
-                    <span class="lang-hidden" data-lang="fr" style="display: none;">Coordonnées</span>
-                </h3>
-                <p style="color: #666; line-height: 1.8;">
-                    <span data-lang="nl">
-                        Voor vragen over deze woning, bezichtigingen of meer informatie, neem gerust contact op. De agent staat graag voor u klaar.
-                    </span>
-                    <span class="lang-hidden" data-lang="en" style="display: none;">
-                        For questions about this property, viewings, or more information, feel free to contact us. The agent is happy to help.
-                    </span>
-                    <span class="lang-hidden" data-lang="fr" style="display: none;">
-                        Pour des questions sur cette propriété, des visites ou plus d'informations, n'hésitez pas à nous contacter. L'agent sera ravi de vous aider.
-                    </span>
-                </p>
-            </div>
-        </div>
-    </section>
+let startLang = 'nl';
+try{ const s = localStorage.getItem('cp45_lang'); if(s) startLang = s; }catch(e){}
+setLang(startLang);
 
-    <!-- Footer -->
-    <footer>
-        <p>© 2026 Luxury Property. <span data-lang="nl">Alle rechten voorbehouden.</span><span class="lang-hidden" data-lang="en" style="display: none;">All rights reserved.</span><span class="lang-hidden" data-lang="fr" style="display: none;">Tous droits réservés.</span></p>
-    </footer>
+/* ====================== NAV SCROLL STATE ====================== */
+const hdr = $("#hdr");
+const onScroll = ()=>hdr.classList.toggle('scrolled', window.scrollY > window.innerHeight*0.7 - 74);
+onScroll(); window.addEventListener('scroll',onScroll,{passive:true});
 
-    <script>
-        let currentSlideIndex = 0;
-        const slides = document.querySelectorAll('.carousel-slide');
-        const dots = document.querySelectorAll('.dot');
-        const totalSlides = slides.length;
-        let autoSlideTimer;
+/* ====================== REVEAL ON SCROLL ====================== */
+const io = new IntersectionObserver((entries)=>{
+  entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target);} });
+},{threshold:0.12});
+document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
 
-        function showSlide(index) {
-            slides.forEach(slide => slide.classList.remove('active'));
-            dots.forEach(dot => dot.classList.remove('active'));
-
-            slides[index].classList.add('active');
-            dots[index].classList.add('active');
-        }
-
-        function nextSlide() {
-            currentSlideIndex = (currentSlideIndex + 1) % totalSlides;
-            showSlide(currentSlideIndex);
-        }
-
-        function currentSlide(index) {
-            currentSlideIndex = index;
-            showSlide(currentSlideIndex);
-            resetAutoSlide();
-        }
-
-        function resetAutoSlide() {
-            clearInterval(autoSlideTimer);
-            autoSlideTimer = setInterval(nextSlide, 5000);
-        }
-
-        // Language Switching
-        const langButtons = document.querySelectorAll('.lang-btn');
-
-        langButtons.forEach(btn => {
-            btn.addEventListener('click', function() {
-                const lang = this.getAttribute('data-lang');
-                switchLanguage(lang);
-
-                // Update active button
-                langButtons.forEach(b => b.classList.remove('active'));
-                this.classList.add('active');
-
-                // Update HTML lang attribute
-                document.documentElement.lang = lang;
-            });
-        });
-
-        function switchLanguage(lang) {
-            // Hide all language-specific content
-            document.querySelectorAll('[data-lang]').forEach(el => {
-                if (el.getAttribute('data-lang') !== lang) {
-                    el.style.display = 'none';
-                } else {
-                    el.style.display = '';
-                }
-            });
-
-            // Handle lang-hidden class
-            document.querySelectorAll('.lang-hidden').forEach(el => {
-                if (el.getAttribute('data-lang') === lang) {
-                    el.style.display = '';
-                } else {
-                    el.style.display = 'none';
-                }
-            });
-        }
-
-        // Initialize
-        showSlide(0);
-        autoSlideTimer = setInterval(nextSlide, 5000);
-
-        // Keyboard navigation
-        document.addEventListener('keydown', function(e) {
-            if (e.key === 'ArrowLeft') {
-                currentSlideIndex = (currentSlideIndex - 1 + totalSlides) % totalSlides;
-                showSlide(currentSlideIndex);
-                resetAutoSlide();
-            } else if (e.key === 'ArrowRight') {
-                nextSlide();
-                resetAutoSlide();
-            }
-        });
-    </script>
+/* ====================== LIGHTBOX ====================== */
+let lbIdx = 0;
+const lb=$("#lb"), lbImg=$("#lbImg");
+function openLB(i){ lbIdx=i; lbImg.src=GALLERY[i].src; lb.classList.add('open'); }
+function closeLB(){ lb.classList.remove('open'); }
+function step(d){ lbIdx=(lbIdx+d+GALLERY.length)%GALLERY.length; lbImg.src=GALLERY[lbIdx].src; }
+$("#lbClose").addEventListener('click',closeLB);
+$("#lbPrev").addEventListener('click',e=>{e.stopPropagation();step(-1)});
+$("#lbNext").addEventListener('click',e=>{e.stopPropagation();step(1)});
+lb.addEventListener('click',e=>{ if(e.target===lb) closeLB(); });
+document.addEventListener('keydown',e=>{
+  if(!lb.classList.contains('open')) return;
+  if(e.key==='Escape') closeLB();
+  if(e.key==='ArrowLeft') step(-1);
+  if(e.key==='ArrowRight') step(1);
+});
+</script>
 </body>
 </html>

@@ -542,7 +542,7 @@ const $ = s => document.querySelector(s);
 
 // Hero marquee — duplicate the set for a seamless loop
 (function(){
-  const heroImgs = ["Immovran-2","Immovran-25","Immovran-13","Immovran-20","Immovran-18","Immovran-23","Immovran-36","Immovran-35"];
+  const heroImgs = ["Immovran-2","Immovran-3","Immovran-5","Immovran-6","Immovran-12","Immovran-13","Immovran-14","Immovran-15","Immovran-16","Immovran-18","Immovran-19","Immovran-20","Immovran-22","Immovran-23","Immovran-24","Immovran-25","Immovran-30","Immovran-33","Immovran-35","Immovran-36","Immovran-39","Immovran-43","Immovran-45","Immovran-46","Immovran-47","Immovran-49","Immovran-51","Immovran-53","Immovran-55","Immovran-63","Immovran-64","Immovran-65","Immovran-73"];
   const set = heroImgs.map(n=>`<div class="slide"><img src="Images/${n}.webp" alt=""></div>`).join("");
   $("#heroTrack").innerHTML = set + set;
 })();
